@@ -50,7 +50,7 @@ body::before {
 
 /* === CONTAINER === */
 .container {
-    min-height: 500vh; /* Long scroll for elevator journey */
+    min-height: 800vh; /* More scroll room = less sensitive per floor */
     position: relative;
     z-index: 2;
     background: transparent;

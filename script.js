@@ -5,27 +5,38 @@ const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
 const totalFloors = storyLines.length; // 10 lines (floors 0-9)
 
-let currentIndex = 0;
+let currentIndex = -1;
+let isInitialized = false;
 
-// Snap-based scroll: divide the full scroll into sections
-// ScrollTrigger snap will lock to each section boundary
+// Reverse mapping: scroll position 0 (top) = floor 9, scroll position 1 (bottom) = floor 0
+// User starts at bottom (floor 0), scrolls UP to ascend
+function scrollIndexToLineIndex(scrollIndex) {
+    return (totalFloors - 1) - scrollIndex;
+}
+
+// Hide all lines initially
+storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
+
+// Main scroll controller with snap
 ScrollTrigger.create({
     trigger: '.container',
     start: 'top top',
     end: 'bottom bottom',
     snap: {
-        snapTo: 1 / (totalFloors - 1),   // snap points at 0, 1/9, 2/9 ... 1
-        duration: { min: 0.3, max: 0.6 },
-        delay: 0.05,
-        ease: 'power2.inOut'
+        snapTo: 1 / (totalFloors - 1),
+        duration: { min: 0.4, max: 0.8 },
+        delay: 0.1,
+        ease: 'power3.inOut',
+        inertia: false              // kill momentum — one swipe, one floor
     },
     onUpdate(self) {
-        // Map scroll progress to floor index
-        const rawIndex = self.progress * (totalFloors - 1);
-        const index = Math.round(rawIndex);
+        if (!isInitialized) return;
+        // scrollIndex 0 = top of page, 9 = bottom
+        const scrollIndex = Math.round(self.progress * (totalFloors - 1));
+        const lineIndex = scrollIndexToLineIndex(scrollIndex);
 
-        if (index !== currentIndex) {
-            showLine(index);
+        if (lineIndex !== currentIndex) {
+            showLine(lineIndex);
         }
     }
 });
@@ -33,38 +44,27 @@ ScrollTrigger.create({
 function showLine(index) {
     const prevIndex = currentIndex;
     currentIndex = index;
-
-    // The data-floor values go 0-9 in HTML order
-    // But we want scroll-down = ascending, so reverse:
-    // index 0 (top of page) = floor 0, index 9 (bottom) = floor 9
-    // Actually — to reverse: index 0 = floor 9, index 9 = floor 0
-    // Wait, the story starts at floor 0 and goes to floor 9.
-    // "Scroll down to go up" means first section = floor 0, last = floor 9.
-    // That's already the natural mapping. The story order in HTML is 0→9.
-    // So scrolling down reveals floors 0, 1, 2... 9. That IS going up.
-
     const floor = parseInt(storyLines[index].getAttribute('data-floor'));
-
-    // Direction for animation
     const goingUp = index > prevIndex;
 
-    // Fade out previous
-    if (prevIndex !== index && storyLines[prevIndex]) {
-        gsap.to(storyLines[prevIndex], {
-            opacity: 0,
-            y: goingUp ? -30 : 30,
-            duration: 0.35,
-            ease: 'power2.in'
-        });
-    }
+    // Kill ALL running tweens on story lines to prevent stacking
+    storyLines.forEach(line => gsap.killTweensOf(line));
 
-    // Fade in current
+    // Hide ALL lines except current
+    storyLines.forEach((line, i) => {
+        if (i !== index) {
+            gsap.set(line, { opacity: 0 });
+        }
+    });
+
+    // Animate in current line
     gsap.fromTo(storyLines[index],
-        { opacity: 0, y: goingUp ? 30 : -30 },
-        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.1 }
+        { opacity: 0, y: goingUp ? 25 : -25 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
     );
 
     // Update floor number
+    gsap.killTweensOf(floorNumber);
     gsap.to(floorNumber, {
         textContent: floor,
         duration: 0.3,
@@ -76,31 +76,47 @@ function showLine(index) {
     });
 }
 
+// On load: jump to bottom (floor 0), then enable interaction
+window.addEventListener('load', () => {
+    // Instant scroll to bottom — no animation, no triggers
+    ScrollTrigger.disable();
+    window.scrollTo(0, document.body.scrollHeight);
+
+    // Brief delay to let browser settle, then enable
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            ScrollTrigger.enable();
+            ScrollTrigger.refresh();
+            isInitialized = true;
+
+            // Show floor 0 (last line in reversed mapping)
+            showLine(totalFloors - 1);
+            currentIndex = totalFloors - 1;
+        });
+    });
+});
+
 // Hide scroll hint after first scroll
 ScrollTrigger.create({
     trigger: '.container',
-    start: '3% top',
-    onEnter: () => gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.8 }),
-    onLeaveBack: () => gsap.to(scrollHint, { opacity: 0.3, y: 0, duration: 0.8 })
+    start: '97% bottom',   // near bottom, scrolling up
+    end: 'top top',
+    onLeave: () => gsap.to(scrollHint, { opacity: 0.3, y: 0, duration: 0.8 }),
+    onEnterBack: () => gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.8 })
 });
 
-// Floor indicator color shift: cold cyan → warmer tone
+// Floor indicator color shift
 ScrollTrigger.create({
     trigger: '.container',
     start: 'top top',
     end: 'bottom bottom',
     scrub: 2,
     onUpdate(self) {
-        const p = self.progress;
-        const r = Math.round(0 + 100 * p);
+        // Invert: bottom (start) = cold, top (floor 9) = warm
+        const p = 1 - self.progress;
+        const r = Math.round(100 * p);
         const g = Math.round(217 - 17 * p);
         const b = 255;
         floorNumber.style.color = `rgb(${r}, ${g}, ${b})`;
     }
 });
-
-// Disable normalizeScroll — let snap handle the pacing
-// ScrollTrigger.normalizeScroll(true);
-
-// Show first line on load
-gsap.set(storyLines[0], { opacity: 1 });
