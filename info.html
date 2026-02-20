@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between Floors — About</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --text-light: #E8E8E8;
+            --text-dim: #888;
+            --accent: #00D9FF;
+            --bg: #0a0e14;
+        }
+
+        html { background: var(--bg); }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            color: var(--text-light);
+            line-height: 1.8;
+            background: var(--bg);
+            min-height: 100vh;
+        }
+
+        .info-page {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 80px 40px 120px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-family: 'Jost', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-decoration: none;
+            margin-bottom: 60px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        h1 {
+            font-family: 'Jost', sans-serif;
+            font-size: 48px;
+            font-weight: 200;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: var(--text-light);
+        }
+
+        .tagline {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-dim);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-family: 'Jost', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            opacity: 0.6;
+            margin-bottom: 16px;
+        }
+
+        .section p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .section p strong {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.2;
+            margin: 48px 0;
+        }
+
+        .building-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 32px;
+        }
+
+        .spec {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--text-dim);
+        }
+
+        .spec-value {
+            display: block;
+            font-family: 'Jost', sans-serif;
+            font-size: 22px;
+            font-weight: 200;
+            color: var(--text-light);
+            margin-bottom: 2px;
+        }
+
+        .story-list {
+            list-style: none;
+        }
+
+        .story-list li {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--text-dim);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .story-list li .story-num {
+            font-family: 'Jost', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--accent);
+            opacity: 0.5;
+            margin-right: 12px;
+        }
+
+        .story-list li .story-title {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 15px;
+            color: var(--text-dim);
+            border-left: 2px solid rgba(0, 217, 255, 0.2);
+            padding-left: 20px;
+            margin-top: 48px;
+        }
+
+        .quote .attribution {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-size: 12px;
+            color: var(--accent);
+            opacity: 0.4;
+        }
+
+        .credits {
+            font-size: 12px;
+            color: var(--text-dim);
+            opacity: 0.4;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 600px) {
+            .info-page { padding: 50px 24px 100px; }
+            h1 { font-size: 36px; }
+            .building-specs { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-page">
+        <a href="./" class="back-link">← Enter the elevator</a>
+
+        <h1>Between Floors</h1>
+        <p class="tagline">Micro-stories set in elevator encounters. Each ride reveals a life. Scroll to experience the journey.</p>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-label">The World</div>
+            <p><strong>The Confluence</strong> is a 20-floor residential building in the year 2046. AI and robots are household norms. An omniscient building AI named Aria manages everything — climate, security, and the lives of its residents.</p>
+            <p>The residents are a mix of humans, robots, and AI companions. Young professionals, families, retirees, students. Their lives intersect in hallways, lobbies, and the space between floors.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-label">The Building</div>
+            <div class="building-specs">
+                <div class="spec">
+                    <span class="spec-value">20</span>
+                    Floors
+                </div>
+                <div class="spec">
+                    <span class="spec-value">2046</span>
+                    Year built
+                </div>
+                <div class="spec">
+                    <span class="spec-value">3–12</span>
+                    Affordable units
+                </div>
+                <div class="spec">
+                    <span class="spec-value">18–20</span>
+                    Luxury penthouses
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-label">The Format</div>
+            <p>Each story is one elevator ride. <strong>80–100 words.</strong> You scroll, the elevator moves, and a moment unfolds. Some rides are dark. Some are warm. Some are funny. All are brief.</p>
+            <p>52 stories make a year. A full seasonal arc in the life of one building.</p>
+        </div>
+
+        <div class="section">
+            <div class="section-label">How to Read</div>
+            <p>The page starts in the lobby. <strong>Scroll up to ascend.</strong> Each swipe takes you one floor. The story reveals itself as you rise through the building. When the doors open, the ride is over.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-label">Stories</div>
+            <ul class="story-list">
+                <li><span class="story-num">01</span> <span class="story-title">Welcome Home</span> — Maya meets Aria for the first time</li>
+                <li><span class="story-num">02</span> <span class="story-title">The 6 AM Shift</span> — Maria and Mr. Chen share a quiet morning</li>
+                <li><span class="story-num">03</span> <span class="story-title">Firmware Update</span> — Marcus waits for Aria to come back online</li>
+            </ul>
+        </div>
+
+        <div class="quote">
+            "Sometimes the distance between floors is easier to cross than the distance between people."
+            <span class="attribution">— Aria, The Confluence Building AI</span>
+        </div>
+
+        <p class="credits">Created by Saber Zou</p>
+    </div>
+</body>
+</html>
