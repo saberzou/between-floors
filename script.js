@@ -172,14 +172,15 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============ INIT ============
-// Module scripts run after DOM is ready, so init directly
-const bgContainer = document.querySelector('.floor-gradient');
-const c = floorColors[0];
-grainient = initGrainient(bgContainer, c);
+window.addEventListener('load', () => {
+    const bgContainer = document.querySelector('.floor-gradient');
+    const c = floorColors[0];
+    grainient = initGrainient(bgContainer, c);
 
-storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
-currentIndex = 0;
-gsap.set(storyLines[0], { opacity: 1 });
-floorNumber.textContent = '0';
-isAnimating = false;
-applyLang();
+    storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
+    currentIndex = 0;
+    gsap.set(storyLines[0], { opacity: 1 });
+    floorNumber.textContent = '0';
+    isAnimating = false;
+    applyLang();
+});
