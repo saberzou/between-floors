@@ -32,25 +32,25 @@ function toggleLang() {
 // Each floor: [color1, color2, color3] — dark, moody palettes
 const floorColors = [
     // floor 0 — lobby, cold concrete
-    ['#0a1520', '#0d1f30', '#060a10'],
+    ['#152535', '#1a3548', '#0c1820'],
     // floor 1 — Aria speaks, faint warmth
-    ['#0c1825', '#122a3d', '#080e18'],
+    ['#183040', '#1e3e55', '#101e2c'],
     // floor 2 — relief, exhale
-    ['#0e1a28', '#15304a', '#0a1018'],
+    ['#1a3245', '#224060', '#122430'],
     // floor 3 — conversation, subtle connection
-    ['#101c2a', '#183552', '#0c1420'],
+    ['#1c3548', '#254868', '#142838'],
     // floor 4 — Jason calls, tension creeps (muted gold/amber)
-    ['#1a1508', '#2e2210', '#0c0a04'],
+    ['#302818', '#3e3420', '#1a1808'],
     // floor 5 — restraining order, deep purple authority
-    ['#1a0830', '#2e1050', '#0c0418'],
+    ['#2a1848', '#3c2268', '#180e2c'],
     // floor 6 — confrontation, dark green unease
-    ['#081a10', '#0e2e1a', '#040c08'],
+    ['#142e20', '#1c4030', '#0c1c14'],
     // floor 7 — "your safety", cold silver
-    ['#181c20', '#2a3038', '#0c0e12'],
+    ['#283038', '#363e4a', '#1c2028'],
     // floor 8 — doors open, warm gold threshold
-    ['#1c1608', '#302510', '#0e0c04'],
+    ['#302818', '#3e3420', '#1e1a0c'],
     // floor 9 — "welcome home", deep purple fading to dark
-    ['#140828', '#220e40', '#080414'],
+    ['#221440', '#301c58', '#140c24'],
 ];
 
 let grainient = null;
