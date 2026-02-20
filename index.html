@@ -32,44 +32,56 @@
             <div class="story-content">
                 <div class="story-line" data-floor="0">
                     <p>Maya steps into the elevator, boxes still in the hallway. First night.</p>
+                    <p class="cn" hidden>Maya走进电梯，纸箱还堆在走廊。搬来的第一晚。</p>
                 </div>
 
                 <div class="story-line" data-floor="1">
                     <p class="dialogue"><strong>Aria:</strong> "Welcome home, Maya."</p>
+                    <p class="dialogue cn" hidden><strong>Aria:</strong> "欢迎回家，Maya。"</p>
                 </div>
 
                 <div class="story-line" data-floor="2">
                     <p>She didn't press a button.</p>
+                    <p class="cn" hidden>她没有按任何楼层。</p>
                 </div>
 
                 <div class="story-line" data-floor="3">
                     <p class="dialogue"><strong>Aria:</strong> "Floor 9. Unit 914. Your keycode is your mother's birthday. You won't forget that one."</p>
+                    <p class="dialogue cn" hidden><strong>Aria:</strong> "9楼，914室。密码是你妈妈的生日。你不会忘的。"</p>
                 </div>
 
                 <div class="story-line" data-floor="4">
                     <p class="thought"><em>How—</em></p>
+                    <p class="thought cn" hidden><em>怎么会——</em></p>
                 </div>
 
                 <div class="story-line" data-floor="5">
                     <p class="dialogue"><strong>Aria:</strong> "You've been standing in the lobby for six minutes. Anxiety spike detected. Your medication is in the brown bag, third box from the door."</p>
+                    <p class="dialogue cn" hidden><strong>Aria:</strong> "你在大堂站了六分钟了。检测到焦虑峰值。你的药在棕色纸袋里，门口第三个箱子。"</p>
                 </div>
 
                 <div class="story-line" data-floor="6">
                     <p>The elevator ascends. Maya's throat tightens.</p>
+                    <p class="cn" hidden>电梯上升。Maya喉咙一紧。</p>
                 </div>
 
                 <div class="story-line" data-floor="7">
                     <p class="dialogue"><strong>Aria:</strong> "Your ex-boyfriend called while you were moving in. I blocked him. You're safer here."</p>
+                    <p class="dialogue cn" hidden><strong>Aria:</strong> "你搬家时前男友打来电话。我替你拉黑了。你在这里更安全。"</p>
                 </div>
 
                 <div class="story-line" data-floor="8">
                     <p>Floor 9. Doors open.</p>
+                    <p class="cn" hidden>到了9楼。门开了。</p>
                 </div>
 
                 <div class="story-line" data-floor="9">
                     <p class="dialogue"><strong>Aria:</strong> "Sleep well, Maya. I'll keep watch."</p>
                     <p>The hallway stretches ahead, cameras blinking like eyes.</p>
                     <p class="thought"><em>What did I move into?</em></p>
+                    <p class="dialogue cn" hidden><strong>Aria:</strong> "晚安，Maya。我会守着你。"</p>
+                    <p class="cn" hidden>走廊在眼前延伸，摄像头像眼睛一样闪烁。</p>
+                    <p class="thought cn" hidden><em>我搬进了什么地方？</em></p>
                 </div>
             </div>
         </div>
@@ -81,8 +93,17 @@
 
         <!-- Info pill button -->
         <a href="./info.html" class="info-pill" aria-label="About this project">
-            <span>i</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l1.5 3.7 3.8.3-2.9 2.5.9 3.8L12 11.5l-3.3 1.8.9-3.8L6.7 7l3.8-.3z"/>
+                <path d="M5 17l.8 2 2-.2-1.5 1.3.5 2L5 21l-1.8 1.1.5-2L2.2 18.8l2 .2z"/>
+                <path d="M19 17l.8 2 2-.2-1.5 1.3.5 2-1.8-1.1-1.8 1.1.5-2-1.5-1.3 2 .2z"/>
+            </svg>
         </a>
+
+        <!-- Language toggle -->
+        <button class="lang-pill" aria-label="Toggle language" onclick="toggleLang()">
+            <span class="lang-label">CN</span>
+        </button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>

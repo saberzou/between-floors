@@ -211,25 +211,57 @@ body::before {
     backdrop-filter: blur(8px);
 }
 
-.info-pill span {
+.info-pill svg {
+    color: var(--text-light);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.info-pill:hover svg {
+    opacity: 1;
+    color: var(--accent);
+}
+
+/* === LANG PILL === */
+.lang-pill {
+    position: fixed;
+    bottom: 60px;
+    left: 60px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.lang-label {
     font-family: 'Jost', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    font-style: italic;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
     color: var(--text-light);
     opacity: 0.6;
 }
 
-.info-pill:hover {
+.lang-pill:hover {
     background: rgba(0, 217, 255, 0.1);
     border-color: rgba(0, 217, 255, 0.3);
-    transform: scale(1.05);
 }
 
-.info-pill:hover span {
+.lang-pill:hover .lang-label {
     opacity: 1;
     color: var(--accent);
 }
+
+/* Hidden CN text */
+.cn[hidden] { display: none; }
 
 @keyframes pulse {
     0%, 100% { 
@@ -284,6 +316,12 @@ body::before {
         bottom: 40px;
         right: 24px;
         width: 40px;
+        height: 40px;
+    }
+
+    .lang-pill {
+        bottom: 40px;
+        left: 24px;
         height: 40px;
     }
 }
