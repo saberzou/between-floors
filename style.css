@@ -20,14 +20,13 @@
 html {
     scroll-behavior: smooth;
     min-height: 100%;
+    background: linear-gradient(180deg, #132640 0%, #0f1419 50%, #1c2833 100%);
+    background-attachment: fixed;
 }
 
 body {
     font-family: 'Sora', sans-serif;
-    background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-middle) 50%, var(--bg-end) 100%);
-    background-size: 100% 100vh;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: transparent;
     color: var(--text-light);
     line-height: 1.8;
     overflow-x: hidden;
