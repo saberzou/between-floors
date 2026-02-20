@@ -88,9 +88,9 @@ body::before {
 }
 
 .floor-number {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Doto', sans-serif;
     font-size: 140px;
-    font-weight: 200;
+    font-weight: 300;
     color: var(--floor-indicator);
     line-height: 1;
     letter-spacing: -0.02em;
