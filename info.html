@@ -35,8 +35,14 @@
             padding: 80px 40px 120px;
         }
 
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
         .back-link {
-            display: inline-block;
             font-family: 'Jost', sans-serif;
             font-size: 13px;
             font-weight: 300;
@@ -44,11 +50,31 @@
             text-transform: uppercase;
             color: var(--accent);
             text-decoration: none;
-            margin-bottom: 60px;
             opacity: 0.7;
             transition: opacity 0.3s;
         }
         .back-link:hover { opacity: 1; }
+
+        .lang-toggle {
+            font-family: 'Jost', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            opacity: 0.5;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 6px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-toggle:hover {
+            opacity: 1;
+            background: rgba(0,217,255,0.1);
+            border-color: rgba(0,217,255,0.3);
+            color: var(--accent);
+        }
 
         h1 {
             font-family: 'Jost', sans-serif;
@@ -67,9 +93,7 @@
             line-height: 1.6;
         }
 
-        .section {
-            margin-bottom: 48px;
-        }
+        .section { margin-bottom: 48px; }
 
         .section-label {
             font-family: 'Jost', sans-serif;
@@ -124,9 +148,7 @@
             margin-bottom: 2px;
         }
 
-        .story-list {
-            list-style: none;
-        }
+        .story-list { list-style: none; }
 
         .story-list li {
             font-size: 15px;
@@ -175,6 +197,11 @@
             margin-top: 60px;
         }
 
+        [data-lang="cn"] { display: none; }
+        body.cn [data-lang="en"] { display: none; }
+        body.cn [data-lang="cn"] { display: block; }
+        body.cn li[data-lang="cn"] { display: list-item; }
+
         @media (max-width: 600px) {
             .info-page { padding: 50px 24px 100px; }
             h1 { font-size: 36px; }
@@ -184,71 +211,98 @@
 </head>
 <body>
     <div class="info-page">
-        <a href="./" class="back-link">← Enter the elevator</a>
+        <div class="top-bar">
+            <a href="./" class="back-link" data-lang="en">← Enter the elevator</a>
+            <a href="./" class="back-link" data-lang="cn">← 进入电梯</a>
+            <button class="lang-toggle" onclick="toggleLang()">CN</button>
+        </div>
 
-        <h1>Between Floors</h1>
-        <p class="tagline">Micro-stories set in elevator encounters. Each ride reveals a life. Scroll to experience the journey.</p>
+        <h1 data-lang="en">Between Floors</h1>
+        <h1 data-lang="cn">楼层之间</h1>
+
+        <p class="tagline" data-lang="en">Micro-stories set in elevator encounters. Each ride reveals a life. Scroll to experience the journey.</p>
+        <p class="tagline" data-lang="cn">电梯里的微型故事。每一程揭示一段人生。滑动屏幕，体验旅程。</p>
 
         <div class="divider"></div>
 
         <div class="section">
-            <div class="section-label">The World</div>
-            <p><strong>The Confluence</strong> is a 20-floor residential building in the year 2046. AI and robots are household norms. An omniscient building AI named Aria manages everything — climate, security, and the lives of its residents.</p>
-            <p>The residents are a mix of humans, robots, and AI companions. Young professionals, families, retirees, students. Their lives intersect in hallways, lobbies, and the space between floors.</p>
+            <div class="section-label" data-lang="en">The World</div>
+            <div class="section-label" data-lang="cn">世界观</div>
+            <p data-lang="en"><strong>The Confluence</strong> is a 20-floor residential building in the year 2046. AI and robots are household norms. An omniscient building AI named Aria manages everything — climate, security, and the lives of its residents.</p>
+            <p data-lang="en">The residents are a mix of humans, robots, and AI companions. Young professionals, families, retirees, students. Their lives intersect in hallways, lobbies, and the space between floors.</p>
+            <p data-lang="cn"><strong>汇流大厦</strong>是一栋建于2046年的20层住宅楼。AI和机器人已是生活常态。全知的楼宇AI"Aria"管理着一切——气候、安防，以及住户们的生活。</p>
+            <p data-lang="cn">住户是人类、机器人和AI伴侣的混合体。年轻白领、家庭、退休老人、学生。他们的生活在走廊、大堂和楼层之间交汇。</p>
         </div>
 
         <div class="section">
-            <div class="section-label">The Building</div>
-            <div class="building-specs">
-                <div class="spec">
-                    <span class="spec-value">20</span>
-                    Floors
-                </div>
-                <div class="spec">
-                    <span class="spec-value">2046</span>
-                    Year built
-                </div>
-                <div class="spec">
-                    <span class="spec-value">3–12</span>
-                    Affordable units
-                </div>
-                <div class="spec">
-                    <span class="spec-value">18–20</span>
-                    Luxury penthouses
-                </div>
+            <div class="section-label" data-lang="en">The Building</div>
+            <div class="section-label" data-lang="cn">建筑</div>
+            <div class="building-specs" data-lang="en">
+                <div class="spec"><span class="spec-value">20</span>Floors</div>
+                <div class="spec"><span class="spec-value">2046</span>Year built</div>
+                <div class="spec"><span class="spec-value">3–12</span>Affordable units</div>
+                <div class="spec"><span class="spec-value">18–20</span>Luxury penthouses</div>
+            </div>
+            <div class="building-specs" data-lang="cn">
+                <div class="spec"><span class="spec-value">20</span>层</div>
+                <div class="spec"><span class="spec-value">2046</span>建造年份</div>
+                <div class="spec"><span class="spec-value">3–12</span>经济适用房</div>
+                <div class="spec"><span class="spec-value">18–20</span>豪华顶层</div>
             </div>
         </div>
 
         <div class="divider"></div>
 
         <div class="section">
-            <div class="section-label">The Format</div>
-            <p>Each story is one elevator ride. <strong>80–100 words.</strong> You scroll, the elevator moves, and a moment unfolds. Some rides are dark. Some are warm. Some are funny. All are brief.</p>
-            <p>52 stories make a year. A full seasonal arc in the life of one building.</p>
+            <div class="section-label" data-lang="en">The Format</div>
+            <div class="section-label" data-lang="cn">形式</div>
+            <p data-lang="en">Each story is one elevator ride. <strong>80–100 words.</strong> You scroll, the elevator moves, and a moment unfolds. Some rides are dark. Some are warm. Some are funny. All are brief.</p>
+            <p data-lang="en">52 stories make a year. A full seasonal arc in the life of one building.</p>
+            <p data-lang="cn">每个故事就是一次电梯旅程。<strong>80–100词。</strong>你滑动，电梯移动，一个瞬间展开。有些旅程黑暗，有些温暖，有些有趣。都很短。</p>
+            <p data-lang="cn">52个故事构成一年。一栋楼的完整四季弧线。</p>
         </div>
 
         <div class="section">
-            <div class="section-label">How to Read</div>
-            <p>The page starts in the lobby. <strong>Scroll up to ascend.</strong> Each swipe takes you one floor. The story reveals itself as you rise through the building. When the doors open, the ride is over.</p>
+            <div class="section-label" data-lang="en">How to Read</div>
+            <div class="section-label" data-lang="cn">阅读方式</div>
+            <p data-lang="en">The page starts in the lobby. <strong>Scroll up to ascend.</strong> Each swipe takes you one floor. The story reveals itself as you rise through the building. When the doors open, the ride is over.</p>
+            <p data-lang="cn">页面从大堂开始。<strong>向上滑动即可上升。</strong>每次滑动上升一层。故事随着你穿过建筑而展开。当门打开时，旅程结束。</p>
         </div>
 
         <div class="divider"></div>
 
         <div class="section">
-            <div class="section-label">Stories</div>
+            <div class="section-label" data-lang="en">Stories</div>
+            <div class="section-label" data-lang="cn">故事</div>
             <ul class="story-list">
-                <li><span class="story-num">01</span> <span class="story-title">Welcome Home</span> — Maya meets Aria for the first time</li>
-                <li><span class="story-num">02</span> <span class="story-title">The 6 AM Shift</span> — Maria and Mr. Chen share a quiet morning</li>
-                <li><span class="story-num">03</span> <span class="story-title">Firmware Update</span> — Marcus waits for Aria to come back online</li>
+                <li data-lang="en"><span class="story-num">01</span> <span class="story-title">Welcome Home</span> — Maya meets Aria for the first time</li>
+                <li data-lang="en"><span class="story-num">02</span> <span class="story-title">The 6 AM Shift</span> — Maria and Mr. Chen share a quiet morning</li>
+                <li data-lang="en"><span class="story-num">03</span> <span class="story-title">Firmware Update</span> — Marcus waits for Aria to come back online</li>
+                <li data-lang="cn"><span class="story-num">01</span> <span class="story-title">欢迎回家</span> — Maya第一次遇见Aria</li>
+                <li data-lang="cn"><span class="story-num">02</span> <span class="story-title">早班六点</span> — Maria和陈先生共度一个安静的清晨</li>
+                <li data-lang="cn"><span class="story-num">03</span> <span class="story-title">固件更新</span> — Marcus等待Aria重新上线</li>
             </ul>
         </div>
 
-        <div class="quote">
+        <div class="quote" data-lang="en">
             "Sometimes the distance between floors is easier to cross than the distance between people."
             <span class="attribution">— Aria, The Confluence Building AI</span>
         </div>
+        <div class="quote" data-lang="cn">
+            "有时候，楼层之间的距离，比人与人之间的距离更容易跨越。"
+            <span class="attribution">— Aria，汇流大厦楼宇AI</span>
+        </div>
 
-        <p class="credits">Created by Saber Zou</p>
+        <p class="credits" data-lang="en">Created by Saber Zou</p>
+        <p class="credits" data-lang="cn">创作者：邹颂兵</p>
     </div>
+
+    <script>
+        function toggleLang() {
+            document.body.classList.toggle('cn');
+            const btn = document.querySelector('.lang-toggle');
+            btn.textContent = document.body.classList.contains('cn') ? 'EN' : 'CN';
+        }
+    </script>
 </body>
 </html>
