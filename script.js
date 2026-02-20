@@ -172,7 +172,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============ INIT ============
-window.addEventListener('load', () => {
+function initApp() {
     // Init grainient WebGL background
     const bgContainer = document.querySelector('.floor-gradient');
     const c = floorColors[0];
@@ -185,4 +185,12 @@ window.addEventListener('load', () => {
     floorNumber.textContent = '0';
     isAnimating = false;
     applyLang();
+}
+
+window.addEventListener('load', () => {
+    if (window.OGL) {
+        initApp();
+    } else {
+        window.addEventListener('ogl-ready', initApp);
+    }
 });
