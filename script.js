@@ -1,115 +1,98 @@
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-// Floor indicator element
 const floorNumber = document.querySelector('.floor-number');
 const scrollHint = document.querySelector('.scroll-hint');
-const body = document.body;
-
-// Story lines
 const storyLines = document.querySelectorAll('.story-line');
+const totalFloors = storyLines.length; // 10 lines (floors 0-9)
 
-// Total floors for the journey
-const totalFloors = 9;
+// Each story line gets its own scroll section
+// Container is 500vh, so each floor gets ~50vh of scroll
+const sectionSize = 1 / totalFloors;
 
-// Animate story lines on scroll with smoother easing
+let currentFloor = -1;
+
 storyLines.forEach((line, index) => {
-    const targetFloor = parseInt(line.getAttribute('data-floor'));
-    
-    // Calculate scroll position for each floor
-    const scrollProgress = targetFloor / totalFloors;
-    
-    gsap.to(line, {
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: 'body',
-            start: `${scrollProgress * 100}% top`,
-            end: `${(scrollProgress + 0.15) * 100}% top`,
-            scrub: 1.5,
-            onEnter: () => updateFloor(targetFloor),
-            onEnterBack: () => updateFloor(targetFloor)
+    const floor = parseInt(line.getAttribute('data-floor'));
+    const start = index * sectionSize;
+    const end = start + sectionSize;
+
+    ScrollTrigger.create({
+        trigger: '.container',
+        start: `${start * 100}% top`,
+        end: `${end * 100}% top`,
+        onEnter: () => showLine(index, floor),
+        onEnterBack: () => showLine(index, floor),
+        onLeave: () => {
+            // Fade out when scrolling past
+            if (index < totalFloors - 1) {
+                gsap.to(line, { opacity: 0, y: -20, duration: 0.4, ease: 'power2.in' });
+            }
+        },
+        onLeaveBack: () => {
+            // Fade out when scrolling back past
+            if (index > 0) {
+                gsap.to(line, { opacity: 0, y: 20, duration: 0.4, ease: 'power2.in' });
+            }
         }
     });
 });
 
-// Update floor indicator with smooth transition
-let currentFloor = 0;
-function updateFloor(floor) {
+function showLine(index, floor) {
+    // Hide all other lines
+    storyLines.forEach((l, i) => {
+        if (i !== index) {
+            gsap.to(l, { opacity: 0, duration: 0.3, ease: 'power2.in' });
+        }
+    });
+
+    // Show current line
+    gsap.to(storyLines[index], {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+    });
+
+    // Update floor number
     if (currentFloor !== floor) {
         currentFloor = floor;
         gsap.to(floorNumber, {
             textContent: floor,
-            duration: 0.5,
-            ease: "power2.inOut",
+            duration: 0.4,
+            ease: 'power2.inOut',
             snap: { textContent: 1 },
-            onUpdate: function() {
-                floorNumber.textContent = Math.round(floorNumber.textContent);
+            onUpdate() {
+                floorNumber.textContent = Math.round(parseFloat(floorNumber.textContent));
             }
         });
     }
 }
 
-// Hide scroll hint after initial scroll
+// Hide scroll hint after first scroll
 ScrollTrigger.create({
-    trigger: 'body',
-    start: '5% top',
-    onEnter: () => {
-        gsap.to(scrollHint, {
-            opacity: 0,
-            y: 10,
-            duration: 0.8,
-            ease: "power2.out"
-        });
-    },
-    onLeaveBack: () => {
-        gsap.to(scrollHint, {
-            opacity: 0.3,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out"
-        });
-    }
+    trigger: '.container',
+    start: '3% top',
+    onEnter: () => gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.8 }),
+    onLeaveBack: () => gsap.to(scrollHint, { opacity: 0.3, y: 0, duration: 0.8 })
 });
 
-// Animate floor indicator color as elevator ascends (cold to warm)
+// Floor indicator color shift: cold cyan → warmer tone
 ScrollTrigger.create({
-    trigger: 'body',
+    trigger: '.container',
     start: 'top top',
     end: 'bottom bottom',
     scrub: 2,
-    onUpdate: (self) => {
-        const progress = self.progress;
-        
-        // Transition floor indicator from cold cyan to warmer blue
-        const startColor = { r: 0, g: 217, b: 255 };     // #00D9FF (cold cyan)
-        const endColor = { r: 100, g: 200, b: 255 };     // Warmer blue
-        
-        const r = Math.round(startColor.r + (endColor.r - startColor.r) * progress);
-        const g = Math.round(startColor.g + (endColor.g - startColor.g) * progress);
-        const b = Math.round(startColor.b + (endColor.b - startColor.b) * progress);
-        
+    onUpdate(self) {
+        const p = self.progress;
+        const r = Math.round(0 + 100 * p);
+        const g = Math.round(217 - 17 * p);
+        const b = 255;
         floorNumber.style.color = `rgb(${r}, ${g}, ${b})`;
     }
 });
 
-// Subtle parallax effect on story content
-gsap.to('.story-content', {
-    y: -100,
-    ease: "none",
-    scrollTrigger: {
-        trigger: 'body',
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 3
-    }
-});
-
-// Initialize - set floor to 0
-gsap.set(floorNumber, { 
-    textContent: 0 
-});
-
-// Add smooth momentum scrolling feel
+// Normalize scroll for smoother feel
 ScrollTrigger.normalizeScroll(true);
+
+// Show first line on load
+gsap.set(storyLines[0], { opacity: 1 });
