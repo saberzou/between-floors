@@ -21,6 +21,7 @@ html {
     scroll-behavior: smooth;
     min-height: 100%;
     background: #0a0e14;
+    overflow: hidden;
 }
 
 /* Floor gradient backdrop — two layers that crossfade */
@@ -72,7 +73,7 @@ body::before {
 
 /* === CONTAINER === */
 .container {
-    min-height: 800vh; /* More scroll room = less sensitive per floor */
+    min-height: 100vh; /* No scroll — we handle navigation manually */
     position: relative;
     z-index: 2;
     background: transparent;
