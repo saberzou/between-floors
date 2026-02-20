@@ -19,16 +19,20 @@
 
 html {
     scroll-behavior: smooth;
+    min-height: 100%;
 }
 
 body {
     font-family: 'Sora', sans-serif;
     background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-middle) 50%, var(--bg-end) 100%);
+    background-size: 100% 100vh;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--text-light);
     line-height: 1.8;
     overflow-x: hidden;
     position: relative;
+    min-height: 100vh;
 }
 
 /* Subtle film grain texture overlay */
@@ -50,6 +54,7 @@ body::before {
     min-height: 500vh; /* Long scroll for elevator journey */
     position: relative;
     z-index: 2;
+    background: transparent;
 }
 
 /* === FLOOR INDICATOR (Fixed) === */
