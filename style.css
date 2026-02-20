@@ -138,8 +138,8 @@ body::before {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-    max-width: 700px;
-    padding: 0 80px;
+    max-width: 900px;
+    padding: 0 60px;
     opacity: 0;
 }
 
