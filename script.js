@@ -3,6 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 const floorNumber = document.querySelector('.floor-number');
 const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
+const totalFloors = storyLines.length;
 
 // ============ LANGUAGE ============
 let currentLang = localStorage.getItem('bf-lang') || 'en';
@@ -27,32 +28,34 @@ function toggleLang() {
     applyLang();
 }
 
-// ============ GRADIENT ============
-const gradFrom = document.querySelector('.floor-gradient-from');
-const gradTo = document.querySelector('.floor-gradient-to');
-const totalFloors = storyLines.length; // 10 (index 0–9, floor 0–9)
-
-const floorGradients = [
-    { c1: '#0a0e14', c2: '#1a2332', angle: 160 },  // floor 0
-    { c1: '#0c1220', c2: '#162a3a', angle: 150 },
-    { c1: '#0e1018', c2: '#1c1f2e', angle: 170 },
-    { c1: '#0a1628', c2: '#1a3048', angle: 140 },
-    { c1: '#14101e', c2: '#2a1a3a', angle: 165 },
-    { c1: '#120a1a', c2: '#2e1530', angle: 155 },
-    { c1: '#0e0c1a', c2: '#221828', angle: 145 },
-    { c1: '#0a1418', c2: '#142830', angle: 160 },
-    { c1: '#101218', c2: '#1e2838', angle: 150 },
-    { c1: '#080c12', c2: '#182430', angle: 170 },  // floor 9
+// ============ GRAINIENT COLORS PER FLOOR ============
+// Each floor: [color1, color2, color3] — dark, moody palettes
+const floorColors = [
+    // floor 0 — lobby, cold concrete
+    ['#0a1520', '#0d1f30', '#060a10'],
+    // floor 1 — Aria speaks, faint warmth
+    ['#0c1825', '#122a3d', '#080e18'],
+    // floor 2 — relief, exhale
+    ['#0e1a28', '#15304a', '#0a1018'],
+    // floor 3 — conversation, subtle connection
+    ['#101c2a', '#183552', '#0c1420'],
+    // floor 4 — Jason calls, tension creeps
+    ['#14101e', '#1e1530', '#0a0812'],
+    // floor 5 — restraining order, protective purple
+    ['#160e22', '#281838', '#0c0815'],
+    // floor 6 — confrontation, darker
+    ['#12081a', '#22102e', '#080510'],
+    // floor 7 — "your safety", cold authority
+    ['#0a1418', '#142830', '#060c10'],
+    // floor 8 — doors open, threshold
+    ['#0e1220', '#1a2538', '#080a14'],
+    // floor 9 — "welcome home", ambiguous
+    ['#080c14', '#121e2c', '#050810'],
 ];
 
-function applyGradient(el, g) {
-    el.style.background = `linear-gradient(${g.angle}deg, ${g.c1} 0%, ${g.c2} 100%)`;
-}
+let grainient = null;
 
 // ============ STATE ============
-// currentIndex maps directly to storyLines index AND data-floor value (both 0–9)
-// Floor 0 = index 0, Floor 9 = index 9
-// "Scroll/swipe up" = go UP in the elevator = higher floor = index + 1
 let currentIndex = 0;
 let isAnimating = false;
 
@@ -63,7 +66,7 @@ function showLine(index, goingUp) {
 
     isAnimating = true;
     currentIndex = index;
-    const floor = index; // direct mapping
+    const floor = index;
 
     // Kill all tweens
     storyLines.forEach(line => gsap.killTweensOf(line));
@@ -82,17 +85,11 @@ function showLine(index, goingUp) {
         }
     );
 
-    // Crossfade gradient
-    const g = floorGradients[floor] || floorGradients[0];
-    applyGradient(gradTo, g);
-    gsap.killTweensOf(gradTo);
-    gsap.to(gradTo, {
-        opacity: 1, duration: 1, ease: 'power1.inOut',
-        onComplete() {
-            applyGradient(gradFrom, g);
-            gsap.set(gradTo, { opacity: 0 });
-        }
-    });
+    // Update grainient colors
+    if (grainient) {
+        const c = floorColors[floor] || floorColors[0];
+        grainient.setColors(c[0], c[1], c[2]);
+    }
 
     // Update floor number
     gsap.killTweensOf(floorNumber);
@@ -176,12 +173,13 @@ document.addEventListener('keydown', (e) => {
 
 // ============ INIT ============
 window.addEventListener('load', () => {
-    // Start at floor 0 (index 0)
-    currentIndex = -1; // force showLine to run
-    applyGradient(gradFrom, floorGradients[0]);
-    storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
+    // Init grainient WebGL background
+    const bgContainer = document.querySelector('.floor-gradient');
+    const c = floorColors[0];
+    grainient = initGrainient(bgContainer, c);
 
-    // Show floor 0 immediately (no animation)
+    // Show floor 0
+    storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
     currentIndex = 0;
     gsap.set(storyLines[0], { opacity: 1 });
     floorNumber.textContent = '0';
