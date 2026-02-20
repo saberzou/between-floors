@@ -89,8 +89,11 @@ body::before {
 
 .floor-number {
     font-family: 'Doto', sans-serif;
+    font-optical-sizing: auto;
     font-size: 140px;
     font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "ROND" 0;
     color: var(--floor-indicator);
     line-height: 1;
     letter-spacing: -0.02em;
