@@ -39,18 +39,18 @@ const floorColors = [
     ['#0e1a28', '#15304a', '#0a1018'],
     // floor 3 — conversation, subtle connection
     ['#101c2a', '#183552', '#0c1420'],
-    // floor 4 — Jason calls, tension creeps
-    ['#14101e', '#1e1530', '#0a0812'],
-    // floor 5 — restraining order, protective purple
-    ['#160e22', '#281838', '#0c0815'],
-    // floor 6 — confrontation, darker
-    ['#12081a', '#22102e', '#080510'],
-    // floor 7 — "your safety", cold authority
-    ['#0a1418', '#142830', '#060c10'],
-    // floor 8 — doors open, threshold
-    ['#0e1220', '#1a2538', '#080a14'],
-    // floor 9 — "welcome home", ambiguous
-    ['#080c14', '#121e2c', '#050810'],
+    // floor 4 — Jason calls, tension creeps (muted gold/amber)
+    ['#1a1508', '#2e2210', '#0c0a04'],
+    // floor 5 — restraining order, deep purple authority
+    ['#1a0830', '#2e1050', '#0c0418'],
+    // floor 6 — confrontation, dark green unease
+    ['#081a10', '#0e2e1a', '#040c08'],
+    // floor 7 — "your safety", cold silver
+    ['#181c20', '#2a3038', '#0c0e12'],
+    // floor 8 — doors open, warm gold threshold
+    ['#1c1608', '#302510', '#0e0c04'],
+    // floor 9 — "welcome home", deep purple fading to dark
+    ['#140828', '#220e40', '#080414'],
 ];
 
 let grainient = null;
