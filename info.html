@@ -36,9 +36,6 @@
         }
 
         .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 60px;
         }
 
@@ -54,27 +51,6 @@
             transition: opacity 0.3s;
         }
         .back-link:hover { opacity: 1; }
-
-        .lang-toggle {
-            font-family: 'Jost', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            color: var(--text-light);
-            opacity: 0.5;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 6px 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .lang-toggle:hover {
-            opacity: 1;
-            background: rgba(0,217,255,0.1);
-            border-color: rgba(0,217,255,0.3);
-            color: var(--accent);
-        }
 
         h1 {
             font-family: 'Jost', sans-serif;
@@ -214,7 +190,6 @@
         <div class="top-bar">
             <a href="./" class="back-link" data-lang="en">← Enter the elevator</a>
             <a href="./" class="back-link" data-lang="cn">← 进入电梯</a>
-            <button class="lang-toggle" onclick="toggleLang()">CN</button>
         </div>
 
         <h1 data-lang="en">Between Floors</h1>
@@ -298,10 +273,9 @@
     </div>
 
     <script>
-        function toggleLang() {
-            document.body.classList.toggle('cn');
-            const btn = document.querySelector('.lang-toggle');
-            btn.textContent = document.body.classList.contains('cn') ? 'EN' : 'CN';
+        // Read global language preference from localStorage
+        if (localStorage.getItem('bf-lang') === 'cn') {
+            document.body.classList.add('cn');
         }
     </script>
 </body>

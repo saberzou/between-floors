@@ -4,25 +4,28 @@ const floorNumber = document.querySelector('.floor-number');
 const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
 
-let currentLang = 'en';
+let currentLang = localStorage.getItem('bf-lang') || 'en';
 
-function toggleLang() {
-    currentLang = currentLang === 'en' ? 'cn' : 'en';
+function applyLang() {
     const label = document.querySelector('.lang-label');
     label.textContent = currentLang === 'en' ? 'CN' : 'EN';
 
     storyLines.forEach(line => {
         const enEls = line.querySelectorAll('p:not(.cn)');
         const cnEls = line.querySelectorAll('p.cn');
-
         enEls.forEach(el => el.hidden = currentLang === 'cn');
         cnEls.forEach(el => el.hidden = currentLang === 'en');
     });
 
-    // Update scroll hint
     scrollHint.querySelector('p').textContent = currentLang === 'en'
         ? '↑ Scroll up to ascend'
         : '↑ 向上滑动，电梯上升';
+}
+
+function toggleLang() {
+    currentLang = currentLang === 'en' ? 'cn' : 'en';
+    localStorage.setItem('bf-lang', currentLang);
+    applyLang();
 }
 const gradFrom = document.querySelector('.floor-gradient-from');
 const gradTo = document.querySelector('.floor-gradient-to');
@@ -200,4 +203,5 @@ window.addEventListener('load', () => {
     gsap.set(storyLines[totalFloors - 1], { opacity: 1 });
     floorNumber.textContent = '0';
     isAnimating = false;
+    applyLang();
 });
