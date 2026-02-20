@@ -172,25 +172,14 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ============ INIT ============
-function initApp() {
-    // Init grainient WebGL background
-    const bgContainer = document.querySelector('.floor-gradient');
-    const c = floorColors[0];
-    grainient = initGrainient(bgContainer, c);
+// Module scripts run after DOM is ready, so init directly
+const bgContainer = document.querySelector('.floor-gradient');
+const c = floorColors[0];
+grainient = initGrainient(bgContainer, c);
 
-    // Show floor 0
-    storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
-    currentIndex = 0;
-    gsap.set(storyLines[0], { opacity: 1 });
-    floorNumber.textContent = '0';
-    isAnimating = false;
-    applyLang();
-}
-
-window.addEventListener('load', () => {
-    if (window.OGL) {
-        initApp();
-    } else {
-        window.addEventListener('ogl-ready', initApp);
-    }
-});
+storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
+currentIndex = 0;
+gsap.set(storyLines[0], { opacity: 1 });
+floorNumber.textContent = '0';
+isAnimating = false;
+applyLang();
