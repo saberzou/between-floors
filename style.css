@@ -269,6 +269,7 @@ body::before {
     padding: 140px 40px 120px;
     height: 100%;
     overflow-y: auto;
+    overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     transform: translateY(20px);
     opacity: 0;

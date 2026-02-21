@@ -108,6 +108,7 @@ let grainient = null;
 let currentIndex = 0;
 let isAnimating = false;
 let onHiddenFloor = null; // null or 'B', '3.5', '5L'
+let scrollHintHidden = false;
 
 // ============ HIDDEN FLOOR DISPLAY ============
 function showHiddenFloor(id) {
@@ -201,8 +202,9 @@ function showLine(index, goingUp) {
     gsap.killTweensOf(floorNumber);
 
     if (floor === 10) {
-        // Choice screen — hide floor number
+        // Choice screen — hide floor number and building name
         gsap.to(floorNumber, { opacity: 0, duration: 0.3 });
+        gsap.to(document.querySelector('.building-name'), { opacity: 0, duration: 0.3 });
         // Restore vote if already cast
         const existingVote = getVote();
         if (existingVote) {
@@ -210,6 +212,7 @@ function showLine(index, goingUp) {
         }
     } else {
         gsap.to(floorNumber, { opacity: 1, duration: 0.3 });
+        gsap.to(document.querySelector('.building-name'), { opacity: 0.4, duration: 0.3 });
         gsap.to(floorNumber, {
             textContent: floor,
             duration: 0.3,
@@ -227,8 +230,9 @@ function showLine(index, goingUp) {
     const g2 = Math.round(217 - 17 * p);
     floorNumber.style.color = `rgb(${r}, ${g2}, 255)`;
 
-    // Hide scroll hint after first move
-    if (floor > 0) {
+    // Hide scroll hint permanently on first move
+    if (floor > 0 && !scrollHintHidden) {
+        scrollHintHidden = true;
         gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.8 });
     }
 }
@@ -264,10 +268,12 @@ document.addEventListener('touchstart', (e) => {
 }, { passive: true });
 
 document.addEventListener('touchmove', (e) => {
+    if (document.getElementById('infoOverlay').classList.contains('open')) return;
     e.preventDefault();
 }, { passive: false });
 
 document.addEventListener('touchend', (e) => {
+    if (document.getElementById('infoOverlay').classList.contains('open')) return;
     const deltaY = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(deltaY) < SWIPE_THRESHOLD) return;
     if (deltaY > 0) goUp(); else goDown();
@@ -281,6 +287,7 @@ const WHEEL_THRESHOLD = 50;
 document.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (isAnimating) return;
+    if (document.getElementById('infoOverlay').classList.contains('open')) return;
 
     wheelAccum += e.deltaY;
     clearTimeout(wheelTimer);
