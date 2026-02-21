@@ -577,6 +577,76 @@ body::before {
     color: #999;
 }
 
+/* === QUIZ OVERLAY === */
+.quiz-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background: rgba(10, 14, 20, 0.97);
+    backdrop-filter: blur(20px);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease;
+    overflow: hidden;
+}
+
+.quiz-overlay.open {
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.quiz-overlay-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.quiz-close {
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 210;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.quiz-close svg {
+    color: var(--floor-indicator);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.quiz-close:hover svg {
+    opacity: 1;
+}
+
+.quiz-overlay-scroll {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 140px 40px 120px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+}
+
 /* === QUIZ SCREEN === */
 .quiz-screen {
     display: flex;
@@ -1020,6 +1090,17 @@ body::before {
         left: 20px !important;
         right: 20px !important;
         max-width: none;
+    }
+
+    .quiz-close {
+        top: 24px;
+        left: 20px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .quiz-overlay-scroll {
+        padding: 100px 24px 80px;
     }
 
     .quiz-question {

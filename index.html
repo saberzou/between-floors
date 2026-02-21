@@ -86,30 +86,7 @@
                     <p>Except Aria.</p>
                 </div>
 
-                <!-- Quiz screen -->
-                <div class="story-line quiz-screen" data-floor="10">
-                    <div class="quiz-container" id="quizContainer">
-                        <div class="quiz-header">
-                            <div class="quiz-label">VOCABULARY CHECK</div>
-                            <div class="quiz-progress"><span id="quizCurrent">1</span> / 5</div>
-                        </div>
-                        <div class="quiz-context" id="quizContext"></div>
-                        <div class="quiz-question" id="quizQuestion"></div>
-                        <div class="quiz-options" id="quizOptions"></div>
-                    </div>
-                    <div class="quiz-results" id="quizResults" hidden>
-                        <div class="quiz-score-display">
-                            <div class="quiz-score-number" id="quizScoreNum">0</div>
-                            <div class="quiz-score-label">/ 5</div>
-                        </div>
-                        <div class="quiz-score-msg" id="quizScoreMsg"></div>
-                        <div class="quiz-word-results" id="quizWordResults"></div>
-                        <div class="quiz-actions">
-                            <button class="quiz-btn" onclick="openVocabOverlay()">Review vocabulary</button>
-                            <button class="quiz-btn quiz-btn-secondary" onclick="retakeQuiz()">Try again</button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Quiz removed from floor system — now lives as overlay below -->
             </div>
 
             <!-- HIDDEN FLOORS -->
@@ -219,6 +196,41 @@
                 </button>
                 <div class="info-scroll" id="vocabContent">
                     <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz overlay -->
+        <div class="quiz-overlay" id="quizOverlay">
+            <div class="quiz-overlay-inner">
+                <button class="quiz-close" onclick="closeQuizOverlay()" aria-label="Close quiz">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                    </svg>
+                </button>
+                <div class="quiz-overlay-scroll">
+                    <div class="quiz-container" id="quizContainer">
+                        <div class="quiz-header">
+                            <div class="quiz-label">VOCABULARY CHECK</div>
+                            <div class="quiz-progress"><span id="quizCurrent">1</span> / 5</div>
+                        </div>
+                        <div class="quiz-context" id="quizContext"></div>
+                        <div class="quiz-question" id="quizQuestion"></div>
+                        <div class="quiz-options" id="quizOptions"></div>
+                    </div>
+                    <div class="quiz-results" id="quizResults" hidden>
+                        <div class="quiz-score-display">
+                            <div class="quiz-score-number" id="quizScoreNum">0</div>
+                            <div class="quiz-score-label">/ 5</div>
+                        </div>
+                        <div class="quiz-score-msg" id="quizScoreMsg"></div>
+                        <div class="quiz-word-results" id="quizWordResults"></div>
+                        <div class="quiz-actions">
+                            <button class="quiz-btn" onclick="openVocabOverlay(); closeQuizOverlay();">Review vocabulary</button>
+                            <button class="quiz-btn quiz-btn-secondary" onclick="retakeQuiz()">Try again</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

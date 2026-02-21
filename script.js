@@ -57,7 +57,6 @@ const floorColors = [
     ['#283038', '#363e4a', '#1c2028'],
     ['#302818', '#3e3420', '#1e1a0c'],
     ['#221440', '#301c58', '#140c24'],
-    ['#0c1018', '#141c28', '#080c12'],
 ];
 
 const hiddenFloorColors = {
@@ -143,10 +142,8 @@ function showLine(index, goingUp) {
     gsap.killTweensOf(floorNumber);
 
     if (floor === 10) {
-        // Quiz screen — hide floor number and building name
-        gsap.to(floorNumber, { opacity: 0, duration: 0.3 });
-        gsap.to(document.querySelector('.building-name'), { opacity: 0, duration: 0.3 });
-        initQuiz();
+        // Quiz is now an overlay — this floor shouldn't exist
+        return;
     } else {
         gsap.to(floorNumber, { opacity: 1, duration: 0.3 });
         gsap.to(document.querySelector('.building-name'), { opacity: 0.4, duration: 0.3 });
@@ -176,6 +173,7 @@ function showLine(index, goingUp) {
 function goUp() {
     if (isAnimating) return;
     if (onHiddenFloor) { hideHiddenFloor(); return; }
+    if (currentIndex === 9) { openQuizOverlay(); return; }
     const next = currentIndex + 1;
     if (next < totalFloors) showLine(next, true);
 }
@@ -237,6 +235,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeInfoOverlay();
         closeVocabOverlay();
+        closeQuizOverlay();
         hideTooltip();
     }
 });
@@ -274,7 +273,8 @@ function applyReturningReader() {
 // ============ OVERLAYS ============
 function isOverlayOpen() {
     return document.getElementById('infoOverlay').classList.contains('open') ||
-           document.getElementById('vocabOverlay').classList.contains('open');
+           document.getElementById('vocabOverlay').classList.contains('open') ||
+           document.getElementById('quizOverlay').classList.contains('open');
 }
 
 function openInfoOverlay() {
@@ -315,6 +315,16 @@ function openVocabOverlay() {
 
 function closeVocabOverlay() {
     document.getElementById('vocabOverlay').classList.remove('open');
+}
+
+// ============ QUIZ OVERLAY ============
+function openQuizOverlay() {
+    document.getElementById('quizOverlay').classList.add('open');
+    initQuiz();
+}
+
+function closeQuizOverlay() {
+    document.getElementById('quizOverlay').classList.remove('open');
 }
 
 // ============ VOCAB TOOLTIPS ============
