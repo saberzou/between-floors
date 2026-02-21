@@ -199,14 +199,13 @@ body::before {
 }
 
 .info-pill svg {
-    color: var(--text-light);
+    color: var(--floor-indicator);
     opacity: 0.6;
     transition: all 0.3s ease;
 }
 
 .info-pill:hover svg {
     opacity: 1;
-    color: var(--accent);
 }
 
 /* === LANG PILL === */
@@ -263,7 +262,7 @@ body::before {
 }
 
 .system-log {
-    font-family: 'Courier New', 'Consolas', monospace;
+    font-family: 'Geist Mono', monospace;
     font-size: 14px;
     line-height: 1.8;
     color: rgba(255, 80, 80, 0.7);
