@@ -660,6 +660,8 @@ body::before {
     display: flex;
     align-items: center;
     gap: 14px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(0, 217, 255, 0.1);
 }
 
 .quiz-option:hover {

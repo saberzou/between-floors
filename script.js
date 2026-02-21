@@ -198,15 +198,18 @@ document.addEventListener('touchstart', (e) => {
 
 document.addEventListener('touchmove', (e) => {
     if (isOverlayOpen()) return;
-    // Allow touch scrolling on quiz options
-    if (e.target.closest('.quiz-option, .quiz-btn')) return;
+    // Don't prevent default on quiz/interactive floors — allows click events to fire on iOS
+    if (currentIndex === 10) return;
+    if (e.target.closest('.quiz-option, .quiz-btn, .vocab-word, .vocab-pill, .info-pill')) return;
     e.preventDefault();
 }, { passive: false });
 
 document.addEventListener('touchend', (e) => {
     if (isOverlayOpen()) return;
     // Don't intercept taps on interactive elements
-    if (e.target.closest('.quiz-option, .quiz-btn, .vocab-word, .vocab-pill, .info-pill')) return;
+    if (e.target.closest('.quiz-option, .quiz-btn, .vocab-word, .vocab-pill, .info-pill, .info-close')) return;
+    // On quiz floor, don't navigate
+    if (currentIndex === 10) return;
     const deltaY = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(deltaY) < SWIPE_THRESHOLD) return;
     if (deltaY > 0) goUp(); else goDown();
