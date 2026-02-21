@@ -305,8 +305,10 @@ body::before {
 /* Discovery counter */
 .discovery-counter {
     position: fixed;
-    bottom: 66px;
-    right: 68px;
+    bottom: 112px;
+    right: 60px;
+    width: 44px;
+    text-align: center;
     font-family: 'Jost', sans-serif;
     font-size: 10px;
     font-weight: 300;
@@ -380,8 +382,9 @@ body::before {
     }
 
     .discovery-counter {
-        bottom: 46px;
-        right: 28px;
+        bottom: 82px;
+        right: 20px;
+        width: 38px;
         font-size: 9px;
     }
 
@@ -451,7 +454,7 @@ body::before {
     }
 
     .discovery-counter {
-        bottom: 42px;
-        right: 24px;
+        bottom: 82px;
+        right: 20px;
     }
 }
