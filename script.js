@@ -12,9 +12,18 @@ function applyLang() {
     const label = document.querySelector('.lang-label');
     label.textContent = currentLang === 'en' ? 'CN' : 'EN';
 
-    document.querySelectorAll('.story-line, .hidden-floor').forEach(line => {
+    document.querySelectorAll('.story-line, .hidden-floor, .choice-prompt, .choice-result').forEach(line => {
         line.querySelectorAll('p:not(.cn), .log-line:not(.cn)').forEach(el => el.hidden = currentLang === 'cn');
         line.querySelectorAll('p.cn, .log-line.cn').forEach(el => el.hidden = currentLang === 'en');
+    });
+
+    // Choice cards — use span elements
+    document.querySelectorAll('.choice-card').forEach(card => {
+        card.querySelectorAll('span:not(.cn)').forEach(el => {
+            if (el.classList.contains('choice-label')) return; // always show A/B
+            el.hidden = currentLang === 'cn';
+        });
+        card.querySelectorAll('span.cn').forEach(el => el.hidden = currentLang === 'en');
     });
 
     scrollHint.querySelector('p').textContent = currentLang === 'en'
@@ -83,6 +92,7 @@ const floorColors = [
     ['#283038', '#363e4a', '#1c2028'],  // 7
     ['#302818', '#3e3420', '#1e1a0c'],  // 8
     ['#221440', '#301c58', '#140c24'],  // 9
+    ['#0c1018', '#141c28', '#080c12'],  // 10 — choice screen, near-black
 ];
 
 // Hidden floor colors
@@ -189,15 +199,27 @@ function showLine(index, goingUp) {
     // Update floor number
     floorNumber.classList.remove('glitch');
     gsap.killTweensOf(floorNumber);
-    gsap.to(floorNumber, {
-        textContent: floor,
-        duration: 0.3,
-        ease: 'power2.inOut',
-        snap: { textContent: 1 },
-        onUpdate() {
-            floorNumber.textContent = Math.round(parseFloat(floorNumber.textContent));
+
+    if (floor === 10) {
+        // Choice screen — hide floor number
+        gsap.to(floorNumber, { opacity: 0, duration: 0.3 });
+        // Restore vote if already cast
+        const existingVote = getVote();
+        if (existingVote) {
+            setTimeout(() => applyVoteUI(existingVote), 400);
         }
-    });
+    } else {
+        gsap.to(floorNumber, { opacity: 1, duration: 0.3 });
+        gsap.to(floorNumber, {
+            textContent: floor,
+            duration: 0.3,
+            ease: 'power2.inOut',
+            snap: { textContent: 1 },
+            onUpdate() {
+                floorNumber.textContent = Math.round(parseFloat(floorNumber.textContent));
+            }
+        });
+    }
 
     // Floor indicator color
     const p = floor / (totalFloors - 1);
@@ -314,6 +336,38 @@ function applyReturningReader() {
         // Modify floor 0 text for returning readers
         const returnMsg = document.querySelector('.returning-reader-msg');
         if (returnMsg) returnMsg.hidden = false;
+    }
+}
+
+// ============ VOTING ============
+const VOTE_KEY = 'bf-vote';
+
+function getVote() {
+    return localStorage.getItem(VOTE_KEY);
+}
+
+function castVote(choice) {
+    if (getVote()) return; // already voted
+    localStorage.setItem(VOTE_KEY, choice);
+    applyVoteUI(choice);
+}
+
+function applyVoteUI(choice) {
+    const cards = document.querySelectorAll('.choice-card');
+    cards.forEach(card => {
+        if (card.dataset.choice === choice) {
+            card.classList.add('selected');
+        } else {
+            card.classList.add('not-selected');
+        }
+    });
+    const result = document.querySelector('.choice-result');
+    if (result) {
+        result.hidden = false;
+        // Apply language
+        result.querySelectorAll('p:not(.cn)').forEach(el => el.hidden = currentLang === 'cn');
+        result.querySelectorAll('p.cn').forEach(el => el.hidden = currentLang === 'en');
+        gsap.fromTo(result, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, delay: 0.3 });
     }
 }
 
