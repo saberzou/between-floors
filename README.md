@@ -1,6 +1,14 @@
-# Between Floors
+# Between Floors ✅
+
+**🚀 LIVE:** https://saberzou.github.io/between-floors/
 
 **Micro-stories set in elevator encounters. Scroll to experience the journey.**
+
+---
+
+## Project Status: COMPLETE (v1.0 - Story 1)
+
+Story 1 is **complete and polished** with hidden discoveries, bilingual support, and returning reader memory. Stories 2-3 are written but not yet implemented.
 
 ---
 
@@ -11,6 +19,40 @@ Maya moves into The Confluence, a smart residential building 20 years in the fut
 **Genre:** Dark, surveillance anxiety, Black Mirror vibes  
 **Floor:** Lobby (0) → Floor 9  
 **Characters:** Maya (new resident) + Aria (building AI)
+
+---
+
+## Features
+
+✨ **Interactive Storytelling**
+- Scroll/swipe to move between floors
+- Story reveals as elevator ascends
+- Smooth GSAP animations
+
+🎨 **Visual Journey**
+- Dynamic gradient (cold → warm emotional arc)
+- Film grain texture overlay
+- Typography mix (Sora + Jost + serif warmth)
+- Color transition on floor indicator
+
+🔍 **Hidden Discoveries** (3 secret floors)
+- **Floor B (Basement)** — Swipe down at floor 0 → Aria's boot sequence
+- **Floor 3.5** — Tap the floor number when at floor 3 → Camera feed
+- **Floor 5L** — Long-press Aria's dialogue at floor 5 → Internal reasoning logs
+- **Discovery counter** tracks your exploration (0/3 → 3/3)
+
+🌐 **Bilingual**
+- EN/CN toggle (persists via localStorage)
+- Both languages fully written
+
+🧠 **Returning Reader Memory**
+- Site remembers if you've visited before
+- Subtle message: "The elevator remembers you"
+
+📱 **Mobile Optimized**
+- Touch gestures (swipe, tap, long-press)
+- Responsive design
+- Haptic feedback (when available)
 
 ---
 
@@ -48,32 +90,52 @@ Maya moves into The Confluence, a smart residential building 20 years in the fut
 
 ## Tech Stack
 
-- HTML/CSS/JavaScript
-- GSAP + ScrollTrigger for scroll-based animation
-- Google Fonts: Sora (body), Jost (headings)
-- Cold tech minimalist aesthetic
-- Responsive design
+**Frontend:**
+- HTML/CSS/JavaScript (vanilla, no frameworks)
+- GSAP 3.12 + ScrollTrigger for scroll-based animation
+- Custom WebGL gradient (Grainient.js)
+- LocalStorage for progress/discovery tracking
+
+**Fonts:**
+- Sora (body/dialogue - technical, slightly futuristic)
+- Jost (UI - geometric, clean)
+- Doto (floor number - rounded modern)
+
+**Design:**
+- Dynamic gradient journey (emotional arc via color)
+- Film grain SVG overlay
+- Smooth easing curves
+- Mobile-first touch interactions
+
+**Deployment:**
+- GitHub Pages
+- Repository: https://github.com/saberzou/between-floors
 
 ---
 
 ## Design
 
-**Color Palette (Cold Monochrome):**
-- Background: `#0A0A0A` (near black)
-- Text: `#E8E8E8` (cool white)
-- Floor indicator: `#00D9FF` (cold cyan)
-- Dialogue: `#B0E0FF` (light blue)
+**Color Journey:**
+The gradient background transitions through the story:
+- **Floor 0:** Cold steel blue (`#152535`) - anxiety, uncertainty
+- **Mid-floors:** Near black (`#0c1820`) - the descent/darkness
+- **Floor 9:** Warm blue-gray (`#221440`) - hope, arrival
+
+**Floor Indicator:**
+- Shifts from cold cyan (`#00D9FF`) to warm blue as you ascend
+- Large rounded number (Doto font, 140px)
 
 **Typography:**
-- Sora: Body text (technical, slightly futuristic)
-- Jost: Headings/UI (geometric, clean)
+- **Sora:** Body text & dialogue (technical warmth)
+- **Jost:** UI elements & labels (geometric clean)
+- **Serif touches:** Added warmth to soften cold tech
 
 **Aesthetic:**
-- Minimalist
-- Cold tech
-- Smooth animations
-- Dark mode
-- Cinematic feel
+- Minimalist composition
+- Dark mode optimized
+- Breathing room (generous padding)
+- Cinematic pacing
+- Subtle parallax on content
 
 ---
 
@@ -87,25 +149,29 @@ Maya moves into The Confluence, a smart residential building 20 years in the fut
 
 ## Roadmap
 
-**Phase 1: Prototype** (Current)
+**Phase 1: Prototype** ✅ **COMPLETE**
 - ✅ Story 1 built with scroll mechanic
-- Single story experience
-- Prove the concept
+- ✅ Hidden floor discovery system
+- ✅ Bilingual support (EN/CN)
+- ✅ Returning reader memory
+- ✅ Mobile optimization
+- ✅ Dynamic gradient journey
+- ✅ Polished animations & interactions
 
-**Phase 2: Expand**
-- Add Stories 2 & 3
-- Story selector/navigation
+**Phase 2: Expand** (Future)
+- Add Stories 2 & 3 to the site
+- Story selector/navigation UI
 - Swipe between stories
 
-**Phase 3: Season 1**
+**Phase 3: Season 1** (Long-term)
 - 13 stories (Spring quarter)
 - Introduce recurring characters
-- Build the world
+- Build interconnected world
 
-**Phase 4: Full Year**
+**Phase 4: Full Year** (Vision)
 - 52 stories (complete seasonal arc)
-- Character arcs
-- Building events
+- Character development arcs
+- Building-wide events
 - Interconnected narrative threads
 
 ---
