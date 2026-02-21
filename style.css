@@ -182,8 +182,8 @@ body::before {
 /* === INFO PILL === */
 .info-pill {
     position: fixed;
-    bottom: 60px;
-    right: 60px;
+    top: 60px;
+    left: 60px;
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -207,6 +207,209 @@ body::before {
 .info-pill:hover svg {
     opacity: 1;
 }
+
+/* === INFO OVERLAY === */
+.info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    background: rgba(10, 14, 20, 0.97);
+    backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    overflow: hidden;
+}
+
+.info-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-overlay-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.info-close {
+    position: fixed;
+    top: 60px;
+    left: 60px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 210;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.info-close svg {
+    color: var(--floor-indicator);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.info-close:hover svg {
+    opacity: 1;
+}
+
+.info-scroll {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 140px 40px 120px;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.5s ease 0.1s, opacity 0.5s ease 0.1s;
+}
+
+.info-overlay.open .info-scroll {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.info-overlay h1 {
+    font-family: 'Jost', sans-serif;
+    font-size: 48px;
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text-light);
+}
+
+.info-tagline {
+    font-size: 15px;
+    font-weight: 300;
+    color: #888;
+    margin-bottom: 60px;
+    line-height: 1.6;
+}
+
+.info-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--floor-indicator);
+    opacity: 0.2;
+    margin: 48px 0;
+}
+
+.info-section {
+    margin-bottom: 48px;
+}
+
+.info-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--floor-indicator);
+    opacity: 0.6;
+    margin-bottom: 16px;
+}
+
+.info-section p {
+    font-size: 15px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.info-section p strong {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.info-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 32px;
+}
+
+.info-spec {
+    font-size: 13px;
+    font-weight: 300;
+    color: #888;
+}
+
+.info-spec-val {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 22px;
+    font-weight: 200;
+    color: var(--text-light);
+    margin-bottom: 2px;
+}
+
+.info-story-list {
+    list-style: none;
+}
+
+.info-story-list li {
+    font-size: 15px;
+    font-weight: 300;
+    color: #888;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-story-num {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--floor-indicator);
+    opacity: 0.5;
+    margin-right: 12px;
+}
+
+.info-story-title {
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.info-quote {
+    font-style: italic;
+    font-size: 15px;
+    color: #888;
+    border-left: 2px solid rgba(0, 217, 255, 0.2);
+    padding-left: 20px;
+    margin-top: 48px;
+    line-height: 1.8;
+}
+
+.info-attribution {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--floor-indicator);
+    opacity: 0.4;
+}
+
+.info-credits {
+    font-size: 12px;
+    color: #888;
+    opacity: 0.4;
+    margin-top: 60px;
+}
+
+/* Hide CN in overlay */
+.info-overlay .cn[hidden] { display: none; }
+
+/* === END INFO OVERLAY === */
 
 /* === LANG PILL === */
 .lang-pill {
@@ -506,10 +709,29 @@ body::before {
     }
 
     .info-pill {
-        bottom: 36px;
-        right: 20px;
+        top: 24px;
+        left: 20px;
         width: 38px;
         height: 38px;
+    }
+
+    .info-close {
+        top: 24px;
+        left: 20px;
+        width: 38px;
+        height: 38px;
+    }
+
+    .info-scroll {
+        padding: 100px 24px 80px;
+    }
+
+    .info-overlay h1 {
+        font-size: 36px;
+    }
+
+    .info-specs {
+        grid-template-columns: 1fr;
     }
 
     .discovery-counter {

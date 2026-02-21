@@ -339,6 +339,26 @@ function applyReturningReader() {
     }
 }
 
+// ============ INFO OVERLAY ============
+function openInfoOverlay() {
+    const overlay = document.getElementById('infoOverlay');
+    // Apply current language
+    overlay.querySelectorAll('[class~="cn"]').forEach(el => el.hidden = currentLang === 'en');
+    // Hide EN elements when CN is active — target elements that have a .cn sibling
+    overlay.querySelectorAll('h1:not(.cn), .info-tagline:not(.cn), .info-label:not(.cn), .info-section > p:not(.cn), .info-specs:not(.cn), .info-story-list:not(.cn), .info-quote:not(.cn), .info-credits:not(.cn)').forEach(el => {
+        el.hidden = currentLang === 'cn';
+    });
+    overlay.classList.add('open');
+}
+
+function closeInfoOverlay() {
+    document.getElementById('infoOverlay').classList.remove('open');
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeInfoOverlay();
+});
+
 // ============ VOTING ============
 const VOTE_KEY = 'bf-vote';
 

@@ -214,11 +214,92 @@
         </div>
 
         <!-- Info pill button -->
-        <a href="./info.html" class="info-pill" aria-label="About this project">
+        <button class="info-pill" aria-label="About this project" onclick="openInfoOverlay()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="12" cy="12" r="9"/>
             </svg>
-        </a>
+        </button>
+
+        <!-- Info overlay -->
+        <div class="info-overlay" id="infoOverlay">
+            <div class="info-overlay-inner">
+                <button class="info-close" onclick="closeInfoOverlay()" aria-label="Close">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                    </svg>
+                </button>
+                <div class="info-scroll">
+                    <h1>Between Floors</h1>
+                    <h1 class="cn" hidden>楼层之间</h1>
+
+                    <p class="info-tagline">Micro-stories set in elevator encounters. Each ride reveals a life. Scroll to experience the journey.</p>
+                    <p class="info-tagline cn" hidden>电梯里的微型故事。每一程揭示一段人生。滑动屏幕，体验旅程。</p>
+
+                    <div class="info-divider"></div>
+
+                    <div class="info-section">
+                        <div class="info-label">The World</div>
+                        <div class="info-label cn" hidden>世界观</div>
+                        <p><strong>The Confluence</strong> is a 20-floor residential building in the year 2046. An omniscient building AI named Aria manages everything — climate, security, and the lives of its residents.</p>
+                        <p class="cn" hidden><strong>汇流大厦</strong>是一栋建于2046年的20层住宅楼。全知的楼宇AI"Aria"管理着一切——气候、安防，以及住户们的生活。</p>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-label">The Building</div>
+                        <div class="info-label cn" hidden>建筑</div>
+                        <div class="info-specs">
+                            <div class="info-spec"><span class="info-spec-val">20</span>Floors</div>
+                            <div class="info-spec"><span class="info-spec-val">2046</span>Year built</div>
+                            <div class="info-spec"><span class="info-spec-val">3–12</span>Affordable units</div>
+                            <div class="info-spec"><span class="info-spec-val">18–20</span>Luxury penthouses</div>
+                        </div>
+                        <div class="info-specs cn" hidden>
+                            <div class="info-spec"><span class="info-spec-val">20</span>层</div>
+                            <div class="info-spec"><span class="info-spec-val">2046</span>建造年份</div>
+                            <div class="info-spec"><span class="info-spec-val">3–12</span>经济适用房</div>
+                            <div class="info-spec"><span class="info-spec-val">18–20</span>豪华顶层</div>
+                        </div>
+                    </div>
+
+                    <div class="info-divider"></div>
+
+                    <div class="info-section">
+                        <div class="info-label">How to Read</div>
+                        <div class="info-label cn" hidden>阅读方式</div>
+                        <p>The page starts in the lobby. <strong>Scroll up to ascend.</strong> Each swipe takes you one floor. The story reveals itself as you rise through the building.</p>
+                        <p class="cn" hidden>页面从大堂开始。<strong>向上滑动即可上升。</strong>每次滑动上升一层。故事随着你穿过建筑而展开。</p>
+                    </div>
+
+                    <div class="info-section">
+                        <div class="info-label">Stories</div>
+                        <div class="info-label cn" hidden>故事</div>
+                        <ul class="info-story-list">
+                            <li><span class="info-story-num">01</span> <span class="info-story-title">Welcome Home</span> — Maya meets Aria for the first time</li>
+                            <li><span class="info-story-num">02</span> <span class="info-story-title">The 6 AM Shift</span> — Maria and Mr. Chen share a quiet morning</li>
+                            <li><span class="info-story-num">03</span> <span class="info-story-title">Firmware Update</span> — Marcus waits for Aria to come back online</li>
+                        </ul>
+                        <ul class="info-story-list cn" hidden>
+                            <li><span class="info-story-num">01</span> <span class="info-story-title">欢迎回家</span> — Maya第一次遇见Aria</li>
+                            <li><span class="info-story-num">02</span> <span class="info-story-title">早班六点</span> — Maria和陈先生共度一个安静的清晨</li>
+                            <li><span class="info-story-num">03</span> <span class="info-story-title">固件更新</span> — Marcus等待Aria重新上线</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-quote">
+                        "Sometimes the distance between floors is easier to cross than the distance between people."
+                        <span class="info-attribution">— Aria, The Confluence Building AI</span>
+                    </div>
+                    <div class="info-quote cn" hidden>
+                        "有时候，楼层之间的距离，比人与人之间的距离更容易跨越。"
+                        <span class="info-attribution">— Aria，汇流大厦楼宇AI</span>
+                    </div>
+
+                    <p class="info-credits">Created by Saber Zou</p>
+                    <p class="info-credits cn" hidden>创作者：邹颂兵</p>
+                </div>
+            </div>
+        </div>
 
         <!-- Discovery counter -->
         <div class="discovery-counter" style="opacity:0">0/3</div>
