@@ -195,9 +195,11 @@ document.addEventListener('touchstart', (e) => {
 }, { passive: true });
 
 document.addEventListener('touchmove', (e) => {
-    // CSS touch-action: none handles scroll prevention
-    // Only need preventDefault for overlays to allow their scrolling
-}, { passive: true });
+    // Allow scrolling inside overlays (quiz, vocab, info)
+    if (e.target.closest('.quiz-overlay-scroll, .info-scroll')) return;
+    // Prevent default scrolling on the main page
+    e.preventDefault();
+}, { passive: false });
 
 document.addEventListener('touchend', (e) => {
     if (isOverlayOpen()) return;
@@ -325,6 +327,8 @@ function openQuizOverlay() {
 
 function closeQuizOverlay() {
     document.getElementById('quizOverlay').classList.remove('open');
+    // Reset animation state so navigation works after closing
+    isAnimating = false;
 }
 
 // ============ VOCAB TOOLTIPS ============
@@ -434,11 +438,25 @@ function renderQuizQuestion() {
 
     const optionsEl = document.getElementById('quizOptions');
     optionsEl.innerHTML = q.options.map((opt, i) => `
-        <button class="quiz-option" onclick="answerQuiz(${i})">
+        <button class="quiz-option" data-answer="${i}">
             <span class="quiz-option-letter">${letters[i]}</span>
             <span>${opt}</span>
         </button>
     `).join('');
+
+    // Bind events directly (more reliable on iOS than inline onclick)
+    optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
+        let handled = false;
+        const doAnswer = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (handled) return;
+            handled = true;
+            answerQuiz(parseInt(btn.dataset.answer, 10));
+        };
+        btn.addEventListener('pointerup', doAnswer);
+        btn.addEventListener('click', doAnswer);
+    });
 
     // Fade in
     gsap.fromTo('#quizContainer', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
