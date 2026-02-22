@@ -7,16 +7,16 @@ const totalFloors = storyLines.length;
 
 // ============ STATE ============
 const floorColors = [
-    ['#fee6e0', '#fa8b9a', '#e3c2f0'],
-    ['#fa8b9a', '#fb555d', '#e3c2f0'],
-    ['#fb555d', '#c75fcb', '#fee6e0'],
-    ['#e3c2f0', '#a883b9', '#fa8b9a'],
-    ['#c75fcb', '#fb3639', '#e3c2f0'],
-    ['#fb3639', '#cf151d', '#a883b9'],
-    ['#a883b9', '#c75fcb', '#fa8b9a'],
-    ['#f4190c', '#fb555d', '#e3c2f0'],
-    ['#cf151d', '#a883b9', '#fb3639'],
-    ['#c75fcb', '#f4190c', '#a883b9'],
+    ['#f5e6d0', '#e8d5bc', '#f0dcc5'],
+    ['#f0dec8', '#e5ccb0', '#ebd4be'],
+    ['#edd8c0', '#e0c8a8', '#e8d0b8'],
+    ['#e8d2b8', '#dcc4a5', '#e5ccb0'],
+    ['#f2e0c8', '#e8d0b0', '#eedcc0'],
+    ['#e5d0c0', '#dac0aa', '#e0cab5'],
+    ['#e0d8c8', '#d5ccb8', '#ddd5c5'],
+    ['#e8dcd0', '#ddd0c0', '#e5d8c8'],
+    ['#f0dcc0', '#e5ccaa', '#ebd5b8'],
+    ['#e8d0c0', '#dcc0a8', '#e5cab5'],
 ];
 
 let grainient = null;
@@ -70,7 +70,11 @@ function showLine(index, goingUp) {
         });
     }
 
-    floorNumber.style.color = '#2596be';
+    const p = floor / (totalFloors - 1);
+    const r = Math.round(190 + 22 * p);
+    const g2 = Math.round(120 + 15 * p);
+    const b = Math.round(60 + 20 * p);
+    floorNumber.style.color = `rgb(${r}, ${g2}, ${b})`;
 
     if (floor > 0 && !scrollHintHidden) {
         scrollHintHidden = true;

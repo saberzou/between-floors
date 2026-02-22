@@ -7,20 +7,20 @@
 
 :root {
     /* Color Palette - Gradient Journey */
-    --bg-start: #fee6e0;     /* Warm pink cream */
-    --bg-middle: #e3c2f0;    /* Soft lavender */
-    --bg-end: #fa8b9a;       /* Rose pink */
-    --text-light: #1e1c1d;
+    --bg-start: #f5e6d0;     /* Warm cream */
+    --bg-middle: #e8d5bc;    /* Soft tan */
+    --bg-end: #f0dcc5;       /* Light warm */
+    --text-light: #2a2420;
     --accent-gray: #c8b8a8;
-    --floor-indicator: #2596be;
-    --dialogue-color: #2596be;
-    --thought-color: #6a5a6a;
+    --floor-indicator: #d4854a;
+    --dialogue-color: #6a8fa8;
+    --thought-color: #8a7a6a;
 }
 
 html {
     scroll-behavior: smooth;
     min-height: 100%;
-    background: #fee6e0;
+    background: #f0dcc5;
     overflow: hidden;
     touch-action: none;
 }
@@ -219,7 +219,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: 200;
-    background: rgba(254, 230, 224, 0.97);
+    background: rgba(245, 235, 220, 0.97);
     backdrop-filter: blur(20px);
     opacity: 0;
     visibility: hidden;
@@ -297,7 +297,7 @@ body::before {
 .info-tagline {
     font-size: 15px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     margin-bottom: 60px;
     line-height: 1.6;
 }
@@ -328,7 +328,7 @@ body::before {
 .info-section p {
     font-size: 15px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     line-height: 1.8;
     margin-bottom: 12px;
 }
@@ -347,7 +347,7 @@ body::before {
 .info-spec {
     font-size: 13px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
 }
 
 .info-spec-val {
@@ -366,7 +366,7 @@ body::before {
 .info-story-list li {
     font-size: 15px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     padding: 12px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
@@ -388,8 +388,8 @@ body::before {
 .info-quote {
     font-style: italic;
     font-size: 15px;
-    color: #6a5a6a;
-    border-left: 2px solid rgba(37, 150, 190, 0.25);
+    color: #8a7a6a;
+    border-left: 2px solid rgba(212, 133, 74, 0.25);
     padding-left: 20px;
     margin-top: 48px;
     line-height: 1.8;
@@ -406,7 +406,7 @@ body::before {
 
 .info-credits {
     font-size: 12px;
-    color: #6a5a6a;
+    color: #8a7a6a;
     opacity: 0.4;
     margin-top: 60px;
 }
@@ -460,8 +460,8 @@ body::before {
 .vocab-tooltip {
     position: fixed;
     z-index: 150;
-    background: rgba(254, 238, 232, 0.96);
-    border: 1px solid rgba(37, 150, 190, 0.25);
+    background: rgba(250, 242, 230, 0.96);
+    border: 1px solid rgba(212, 133, 74, 0.25);
     border-radius: 10px;
     padding: 16px 20px;
     max-width: 320px;
@@ -489,7 +489,7 @@ body::before {
 .vocab-tooltip-pron {
     font-family: monospace;
     font-size: 12px;
-    color: #6a5a6a;
+    color: #8a7a6a;
     margin-bottom: 8px;
 }
 
@@ -523,7 +523,7 @@ body::before {
 .vocab-entry-meta {
     font-family: monospace;
     font-size: 12px;
-    color: #6a5a6a;
+    color: #8a7a6a;
     margin-bottom: 12px;
 }
 
@@ -538,10 +538,10 @@ body::before {
 .vocab-entry-context {
     font-size: 14px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     line-height: 1.7;
     font-style: italic;
-    border-left: 2px solid rgba(37, 150, 190, 0.15);
+    border-left: 2px solid rgba(212, 133, 74, 0.15);
     padding-left: 16px;
     margin-bottom: 12px;
 }
@@ -554,7 +554,7 @@ body::before {
 .vocab-entry-examples li {
     font-size: 14px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     line-height: 1.7;
     padding: 4px 0;
 }
@@ -568,11 +568,11 @@ body::before {
 .vocab-entry-synonyms {
     font-size: 13px;
     font-weight: 300;
-    color: #8a7a8a;
+    color: #a09080;
 }
 
 .vocab-entry-synonyms span {
-    color: #6a5a6a;
+    color: #7a6a5a;
 }
 
 /* === QUIZ OVERLAY === */
@@ -583,7 +583,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: 200;
-    background: rgba(254, 230, 224, 0.97);
+    background: rgba(245, 235, 220, 0.97);
     backdrop-filter: blur(20px);
     transform: translateY(100%);
     visibility: hidden;
@@ -687,7 +687,7 @@ body::before {
 .quiz-context {
     font-size: 15px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     line-height: 1.7;
     font-style: italic;
     margin-bottom: 16px;
@@ -731,12 +731,12 @@ body::before {
     align-items: center;
     gap: 14px;
     touch-action: auto;
-    -webkit-tap-highlight-color: rgba(37, 150, 190, 0.12);
+    -webkit-tap-highlight-color: rgba(212, 133, 74, 0.12);
 }
 
 .quiz-option:hover {
     background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(37, 150, 190, 0.25);
+    border-color: rgba(212, 133, 74, 0.25);
 }
 
 .quiz-option-letter {
@@ -799,7 +799,7 @@ body::before {
     font-family: 'Sora', sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: #6a5a6a;
+    color: #8a7a6a;
     margin-bottom: 32px;
 }
 
@@ -853,8 +853,8 @@ body::before {
     text-transform: uppercase;
     padding: 12px 24px;
     border-radius: 8px;
-    border: 1px solid rgba(37, 150, 190, 0.3);
-    background: rgba(37, 150, 190, 0.1);
+    border: 1px solid rgba(212, 133, 74, 0.3);
+    background: rgba(212, 133, 74, 0.1);
     color: var(--floor-indicator);
     cursor: pointer;
     transition: all 0.25s ease;
@@ -862,8 +862,8 @@ body::before {
 }
 
 .quiz-btn:hover {
-    background: rgba(37, 150, 190, 0.15);
-    border-color: rgba(37, 150, 190, 0.5);
+    background: rgba(212, 133, 74, 0.15);
+    border-color: rgba(212, 133, 74, 0.5);
 }
 
 .quiz-btn-secondary {
