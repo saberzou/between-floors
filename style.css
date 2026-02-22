@@ -448,8 +448,8 @@ body::before {
 /* === INLINE STICKERS === */
 .inline-sticker {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 2.5em;
+    height: 2.5em;
     vertical-align: middle;
     margin: 0 0.05em;
     position: relative;
