@@ -70,11 +70,7 @@ function showLine(index, goingUp) {
         });
     }
 
-    const p = floor / (totalFloors - 1);
-    const r = Math.round(190 + 22 * p);
-    const g2 = Math.round(120 + 15 * p);
-    const b = Math.round(60 + 20 * p);
-    floorNumber.style.color = `rgb(${r}, ${g2}, ${b})`;
+    floorNumber.style.color = '#2f2d2e';
 
     if (floor > 0 && !scrollHintHidden) {
         scrollHintHidden = true;
