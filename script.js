@@ -7,16 +7,16 @@ const totalFloors = storyLines.length;
 
 // ============ STATE ============
 const floorColors = [
-    ['#1e3a55', '#2a5070', '#163048'],
-    ['#224568', '#2e5a80', '#1a3850'],
-    ['#264a6e', '#326088', '#1e4058'],
-    ['#2a5075', '#366890', '#224860'],
-    ['#4a4028', '#5e5438', '#3a3018'],
-    ['#3e2868', '#523488', '#2c1850'],
-    ['#1e4a38', '#2a6050', '#163828'],
-    ['#384858', '#4a5a6e', '#2c3848'],
-    ['#4a4028', '#5e5438', '#3a3018'],
-    ['#382060', '#4c2c80', '#281448'],
+    ['#f5e6d0', '#e8d5bc', '#f0dcc5'],
+    ['#f0dec8', '#e5ccb0', '#ebd4be'],
+    ['#edd8c0', '#e0c8a8', '#e8d0b8'],
+    ['#e8d2b8', '#dcc4a5', '#e5ccb0'],
+    ['#f2e0c8', '#e8d0b0', '#eedcc0'],
+    ['#e5d0c0', '#dac0aa', '#e0cab5'],
+    ['#e0d8c8', '#d5ccb8', '#ddd5c5'],
+    ['#e8dcd0', '#ddd0c0', '#e5d8c8'],
+    ['#f0dcc0', '#e5ccaa', '#ebd5b8'],
+    ['#e8d0c0', '#dcc0a8', '#e5cab5'],
 ];
 
 let grainient = null;
@@ -71,9 +71,10 @@ function showLine(index, goingUp) {
     }
 
     const p = floor / (totalFloors - 1);
-    const r = Math.round(100 * p);
-    const g2 = Math.round(217 - 17 * p);
-    floorNumber.style.color = `rgb(${r}, ${g2}, 255)`;
+    const r = Math.round(190 + 22 * p);
+    const g2 = Math.round(120 + 15 * p);
+    const b = Math.round(60 + 20 * p);
+    floorNumber.style.color = `rgb(${r}, ${g2}, ${b})`;
 
     if (floor > 0 && !scrollHintHidden) {
         scrollHintHidden = true;

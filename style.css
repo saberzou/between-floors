@@ -7,20 +7,20 @@
 
 :root {
     /* Color Palette - Gradient Journey */
-    --bg-start: #1e3a55;     /* Steel blue */
-    --bg-middle: #162430;    /* Deep blue */
-    --bg-end: #2a4058;       /* Warm blue-gray */
-    --text-light: #E8E8E8;
-    --accent-gray: #3A3A3A;
-    --floor-indicator: #00D9FF;
-    --dialogue-color: #B0E0FF;
-    --thought-color: #999999;
+    --bg-start: #f5e6d0;     /* Warm cream */
+    --bg-middle: #e8d5bc;    /* Soft tan */
+    --bg-end: #f0dcc5;       /* Light warm */
+    --text-light: #2a2420;
+    --accent-gray: #c8b8a8;
+    --floor-indicator: #d4854a;
+    --dialogue-color: #6a8fa8;
+    --thought-color: #8a7a6a;
 }
 
 html {
     scroll-behavior: smooth;
     min-height: 100%;
-    background: #141e2a;
+    background: #f0dcc5;
     overflow: hidden;
     touch-action: none;
 }
@@ -54,10 +54,12 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-    opacity: 0.4;
+    opacity: 0.03;
     pointer-events: none;
     z-index: 1;
 }
+
+/* Subtle film grain — reduced for light theme */
 
 /* === CONTAINER === */
 .container {
@@ -188,8 +190,8 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,7 +219,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: 200;
-    background: rgba(10, 14, 20, 0.97);
+    background: rgba(245, 235, 220, 0.97);
     backdrop-filter: blur(20px);
     opacity: 0;
     visibility: hidden;
@@ -243,8 +245,8 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -295,7 +297,7 @@ body::before {
 .info-tagline {
     font-size: 15px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     margin-bottom: 60px;
     line-height: 1.6;
 }
@@ -326,7 +328,7 @@ body::before {
 .info-section p {
     font-size: 15px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     line-height: 1.8;
     margin-bottom: 12px;
 }
@@ -345,7 +347,7 @@ body::before {
 .info-spec {
     font-size: 13px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
 }
 
 .info-spec-val {
@@ -364,9 +366,9 @@ body::before {
 .info-story-list li {
     font-size: 15px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .info-story-num {
@@ -386,8 +388,8 @@ body::before {
 .info-quote {
     font-style: italic;
     font-size: 15px;
-    color: #888;
-    border-left: 2px solid rgba(0, 217, 255, 0.2);
+    color: #8a7a6a;
+    border-left: 2px solid rgba(212, 133, 74, 0.25);
     padding-left: 20px;
     margin-top: 48px;
     line-height: 1.8;
@@ -404,7 +406,7 @@ body::before {
 
 .info-credits {
     font-size: 12px;
-    color: #888;
+    color: #8a7a6a;
     opacity: 0.4;
     margin-top: 60px;
 }
@@ -422,8 +424,8 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -458,8 +460,8 @@ body::before {
 .vocab-tooltip {
     position: fixed;
     z-index: 150;
-    background: rgba(10, 14, 20, 0.95);
-    border: 1px solid rgba(0, 217, 255, 0.2);
+    background: rgba(250, 242, 230, 0.96);
+    border: 1px solid rgba(212, 133, 74, 0.25);
     border-radius: 10px;
     padding: 16px 20px;
     max-width: 320px;
@@ -487,7 +489,7 @@ body::before {
 .vocab-tooltip-pron {
     font-family: monospace;
     font-size: 12px;
-    color: #888;
+    color: #8a7a6a;
     margin-bottom: 8px;
 }
 
@@ -503,7 +505,7 @@ body::before {
 .vocab-entry {
     margin-bottom: 40px;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .vocab-entry:last-child {
@@ -521,7 +523,7 @@ body::before {
 .vocab-entry-meta {
     font-family: monospace;
     font-size: 12px;
-    color: #888;
+    color: #8a7a6a;
     margin-bottom: 12px;
 }
 
@@ -536,10 +538,10 @@ body::before {
 .vocab-entry-context {
     font-size: 14px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     line-height: 1.7;
     font-style: italic;
-    border-left: 2px solid rgba(0, 217, 255, 0.15);
+    border-left: 2px solid rgba(212, 133, 74, 0.15);
     padding-left: 16px;
     margin-bottom: 12px;
 }
@@ -552,7 +554,7 @@ body::before {
 .vocab-entry-examples li {
     font-size: 14px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     line-height: 1.7;
     padding: 4px 0;
 }
@@ -566,11 +568,11 @@ body::before {
 .vocab-entry-synonyms {
     font-size: 13px;
     font-weight: 300;
-    color: #666;
+    color: #a09080;
 }
 
 .vocab-entry-synonyms span {
-    color: #999;
+    color: #7a6a5a;
 }
 
 /* === QUIZ OVERLAY === */
@@ -581,7 +583,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: 200;
-    background: rgba(10, 14, 20, 0.97);
+    background: rgba(245, 235, 220, 0.97);
     backdrop-filter: blur(20px);
     transform: translateY(100%);
     visibility: hidden;
@@ -607,8 +609,8 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -685,7 +687,7 @@ body::before {
 .quiz-context {
     font-size: 15px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     line-height: 1.7;
     font-style: italic;
     margin-bottom: 16px;
@@ -714,8 +716,8 @@ body::before {
 }
 
 .quiz-option {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 10px;
     padding: 16px 20px;
     cursor: pointer;
@@ -729,12 +731,12 @@ body::before {
     align-items: center;
     gap: 14px;
     touch-action: auto;
-    -webkit-tap-highlight-color: rgba(0, 217, 255, 0.1);
+    -webkit-tap-highlight-color: rgba(212, 133, 74, 0.12);
 }
 
 .quiz-option:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(0, 217, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(212, 133, 74, 0.25);
 }
 
 .quiz-option-letter {
@@ -747,13 +749,13 @@ body::before {
 }
 
 .quiz-option.correct {
-    border-color: rgba(80, 255, 120, 0.5);
-    background: rgba(80, 255, 120, 0.08);
+    border-color: rgba(60, 160, 80, 0.5);
+    background: rgba(60, 160, 80, 0.08);
 }
 
 .quiz-option.wrong {
-    border-color: rgba(255, 80, 80, 0.4);
-    background: rgba(255, 80, 80, 0.06);
+    border-color: rgba(200, 60, 60, 0.4);
+    background: rgba(200, 60, 60, 0.06);
     opacity: 0.5;
 }
 
@@ -797,7 +799,7 @@ body::before {
     font-family: 'Sora', sans-serif;
     font-size: 15px;
     font-weight: 300;
-    color: #888;
+    color: #8a7a6a;
     margin-bottom: 32px;
 }
 
@@ -811,7 +813,7 @@ body::before {
     align-items: center;
     gap: 12px;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
     font-family: 'Sora', sans-serif;
     font-size: 14px;
     font-weight: 300;
@@ -824,8 +826,8 @@ body::before {
     text-align: center;
 }
 
-.quiz-word-result .mark.correct { color: rgba(80, 255, 120, 0.8); }
-.quiz-word-result .mark.wrong { color: rgba(255, 80, 80, 0.7); }
+.quiz-word-result .mark.correct { color: rgba(60, 160, 80, 0.8); }
+.quiz-word-result .mark.wrong { color: rgba(200, 60, 60, 0.7); }
 
 .quiz-word-result .word-name {
     flex: 1;
@@ -833,7 +835,7 @@ body::before {
 
 .quiz-word-result .review-hint {
     font-size: 12px;
-    color: rgba(255, 80, 80, 0.5);
+    color: rgba(200, 60, 60, 0.5);
     font-style: italic;
 }
 
@@ -851,8 +853,8 @@ body::before {
     text-transform: uppercase;
     padding: 12px 24px;
     border-radius: 8px;
-    border: 1px solid rgba(0, 217, 255, 0.3);
-    background: rgba(0, 217, 255, 0.08);
+    border: 1px solid rgba(212, 133, 74, 0.3);
+    background: rgba(212, 133, 74, 0.1);
     color: var(--floor-indicator);
     cursor: pointer;
     transition: all 0.25s ease;
@@ -860,20 +862,20 @@ body::before {
 }
 
 .quiz-btn:hover {
-    background: rgba(0, 217, 255, 0.15);
-    border-color: rgba(0, 217, 255, 0.5);
+    background: rgba(212, 133, 74, 0.15);
+    border-color: rgba(212, 133, 74, 0.5);
 }
 
 .quiz-btn-secondary {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.03);
     color: var(--text-light);
     opacity: 0.6;
 }
 
 .quiz-btn-secondary:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 /* === END QUIZ === */
