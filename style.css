@@ -445,6 +445,17 @@ body::before {
     opacity: 1;
 }
 
+/* === INLINE STICKERS === */
+.inline-sticker {
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    margin: 0 0.1em;
+    position: relative;
+    top: -0.05em;
+}
+
 /* === VOCAB WORD HIGHLIGHTING === */
 .vocab-word {
     color: var(--floor-indicator);
