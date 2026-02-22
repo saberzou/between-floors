@@ -882,74 +882,6 @@ body::before {
 
 /* === END QUIZ === */
 
-/* === HIDDEN FLOORS === */
-.hidden-floor {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    max-width: 900px;
-    padding: 0 80px;
-    z-index: 10;
-}
-
-.system-log {
-    font-family: 'Geist Mono', monospace;
-    font-size: 14px;
-    line-height: 1.8;
-    color: rgba(255, 80, 80, 0.7);
-    margin-bottom: 4px;
-}
-
-.hidden-floor p:not(.system-log) {
-    font-family: 'Sora', sans-serif;
-    font-size: 18px;
-    line-height: 1.7;
-    color: var(--text-light);
-    margin-bottom: 16px;
-}
-
-/* Floor number glitch on hidden floor reveal */
-.floor-number.glitch {
-    animation: glitch 0.8s ease-out;
-}
-
-@keyframes glitch {
-    0% { opacity: 0.3; transform: translateX(-5px); }
-    10% { opacity: 1; transform: translateX(3px); }
-    20% { opacity: 0.5; transform: translateX(-2px); }
-    30% { opacity: 1; transform: translateX(1px); }
-    50% { opacity: 0.8; transform: translateX(0); }
-    100% { opacity: 1; transform: translateX(0); }
-}
-
-/* Discovery flash on floor number */
-.floor-number.discovered-flash {
-    animation: discoveryGlow 1.5s ease-out;
-}
-
-@keyframes discoveryGlow {
-    0% { text-shadow: 0 0 20px rgba(255, 80, 80, 0.8); }
-    100% { text-shadow: none; }
-}
-
-/* Discovery counter */
-.discovery-counter {
-    position: fixed;
-    bottom: 112px;
-    right: 60px;
-    width: 44px;
-    text-align: center;
-    font-family: 'Jost', sans-serif;
-    font-size: 10px;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--text-light);
-    z-index: 100;
-    transition: opacity 0.5s ease;
-}
-
 @keyframes pulse {
     0%, 100% { 
         opacity: 0.3;
@@ -1030,46 +962,6 @@ body::before {
 
     .info-specs {
         grid-template-columns: 1fr;
-    }
-
-    .discovery-counter {
-        bottom: 82px;
-        right: 20px;
-        width: 38px;
-        font-size: 9px;
-    }
-
-    .choice-cards {
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .choice-heading {
-        font-size: 20px !important;
-    }
-
-    .choice-card {
-        padding: 22px 20px;
-    }
-
-    .choice-label {
-        font-size: 24px;
-    }
-
-    .choice-title {
-        font-size: 16px;
-    }
-
-    .hidden-floor {
-        padding: 0 40px;
-    }
-
-    .system-log {
-        font-size: 12px;
-    }
-
-    .hidden-floor p:not(.system-log) {
-        font-size: 15px;
     }
 
     .lang-pill {
@@ -1156,22 +1048,5 @@ body::before {
 
     .thought {
         font-size: 14px;
-    }
-
-    .hidden-floor {
-        padding: 0 36px;
-    }
-
-    .system-log {
-        font-size: 11px;
-    }
-
-    .hidden-floor p:not(.system-log) {
-        font-size: 14px;
-    }
-
-    .discovery-counter {
-        bottom: 82px;
-        right: 20px;
     }
 }

@@ -5,47 +5,7 @@ const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
 const totalFloors = storyLines.length;
 
-// ============ DISCOVERY SYSTEM ============
-const DISCOVERY_KEY = 'bf-discovered';
-const VISIT_KEY = 'bf-visits';
-
-function getDiscoveries() {
-    try { return JSON.parse(localStorage.getItem(DISCOVERY_KEY)) || []; } catch { return []; }
-}
-function saveDiscovery(id) {
-    const d = getDiscoveries();
-    if (!d.includes(id)) {
-        d.push(id);
-        localStorage.setItem(DISCOVERY_KEY, JSON.stringify(d));
-        showDiscoveryFlash();
-    }
-}
-
-function getVisitCount() {
-    return parseInt(localStorage.getItem(VISIT_KEY) || '0', 10);
-}
-function incrementVisits() {
-    const n = getVisitCount() + 1;
-    localStorage.setItem(VISIT_KEY, String(n));
-    return n;
-}
-
-function showDiscoveryFlash() {
-    floorNumber.classList.add('discovered-flash');
-    setTimeout(() => floorNumber.classList.remove('discovered-flash'), 1500);
-    updateDiscoveryCounter();
-}
-
-function updateDiscoveryCounter() {
-    const counter = document.querySelector('.discovery-counter');
-    if (!counter) return;
-    const total = 3;
-    const found = getDiscoveries().length;
-    counter.textContent = `${found}/${total}`;
-    counter.style.opacity = found > 0 ? '0.5' : '0';
-}
-
-// ============ GRAINIENT COLORS ============
+// ============ STATE ============
 const floorColors = [
     ['#152535', '#1a3548', '#0c1820'],
     ['#183040', '#1e3e55', '#101e2c'],
@@ -59,69 +19,21 @@ const floorColors = [
     ['#221440', '#301c58', '#140c24'],
 ];
 
-const hiddenFloorColors = {
-    'B':   ['#0c0808', '#1a1010', '#060404'],
-    '3.5': ['#182028', '#203040', '#101820'],
-    '5L':  ['#1a1030', '#281848', '#100820'],
-};
-
 let grainient = null;
 
 // ============ STATE ============
 let currentIndex = 0;
 let isAnimating = false;
-let onHiddenFloor = null;
 let scrollHintHidden = false;
-
-// ============ HIDDEN FLOOR DISPLAY ============
-function showHiddenFloor(id) {
-    if (isAnimating) return;
-    isAnimating = true;
-    onHiddenFloor = id;
-    saveDiscovery(id);
-
-    storyLines.forEach(line => gsap.to(line, { opacity: 0, duration: 0.3 }));
-
-    const hiddenEl = document.querySelector(`.hidden-floor[data-hidden="${id}"]`);
-    if (!hiddenEl) { isAnimating = false; return; }
-
-    gsap.fromTo(hiddenEl,
-        { opacity: 0, y: 0, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power2.out',
-          onComplete() { isAnimating = false; } }
-    );
-
-    const labels = { 'B': 'B', '3.5': '3½', '5L': '5' };
-    floorNumber.textContent = labels[id] || id;
-    floorNumber.style.color = '#ff3333';
-
-    if (grainient && hiddenFloorColors[id]) {
-        const c = hiddenFloorColors[id];
-        grainient.setColors(c[0], c[1], c[2]);
-    }
-
-    floorNumber.classList.add('glitch');
-    setTimeout(() => floorNumber.classList.remove('glitch'), 800);
-}
-
-function hideHiddenFloor() {
-    if (!onHiddenFloor) return;
-    const hiddenEl = document.querySelector(`.hidden-floor[data-hidden="${onHiddenFloor}"]`);
-    if (hiddenEl) gsap.to(hiddenEl, { opacity: 0, duration: 0.3 });
-    onHiddenFloor = null;
-    showLine(currentIndex, true);
-}
 
 // ============ SHOW LINE ============
 function showLine(index, goingUp) {
     if (index < 0 || index >= totalFloors) return;
 
     isAnimating = true;
-    onHiddenFloor = null;
     currentIndex = index;
     const floor = index;
 
-    document.querySelectorAll('.hidden-floor').forEach(el => gsap.set(el, { opacity: 0 }));
     storyLines.forEach(line => gsap.killTweensOf(line));
     storyLines.forEach((line, i) => {
         if (i !== index) gsap.set(line, { opacity: 0 });
@@ -172,7 +84,6 @@ function showLine(index, goingUp) {
 // ============ NAVIGATION ============
 function goUp() {
     if (isAnimating) return;
-    if (onHiddenFloor) { hideHiddenFloor(); return; }
     if (currentIndex === 9) { openQuizOverlay(); return; }
     const next = currentIndex + 1;
     if (next < totalFloors) showLine(next, true);
@@ -180,8 +91,7 @@ function goUp() {
 
 function goDown() {
     if (isAnimating) return;
-    if (onHiddenFloor) { hideHiddenFloor(); return; }
-    if (currentIndex === 0) { showHiddenFloor('B'); return; }
+    if (currentIndex === 0) return;
     const next = currentIndex - 1;
     if (next >= 0) showLine(next, false);
 }
@@ -242,29 +152,18 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ============ TAP ON FLOOR NUMBER → FLOOR 3.5 ============
-floorNumber.style.cursor = 'pointer';
-floorNumber.addEventListener('click', () => {
-    if (isAnimating || onHiddenFloor) return;
-    if (currentIndex === 3) showHiddenFloor('3.5');
-});
-
-// ============ LONG PRESS → ARIA LOGS (FLOOR 5) ============
-let longPressTimer = null;
-document.addEventListener('pointerdown', (e) => {
-    if (isAnimating || onHiddenFloor) return;
-    if (currentIndex !== 5) return;
-    const dialogue = e.target.closest('.dialogue');
-    if (!dialogue) return;
-    longPressTimer = setTimeout(() => {
-        showHiddenFloor('5L');
-        if (navigator.vibrate) navigator.vibrate(50);
-    }, 600);
-});
-document.addEventListener('pointerup', () => clearTimeout(longPressTimer));
-document.addEventListener('pointermove', () => clearTimeout(longPressTimer));
-
 // ============ RETURNING READER ============
+const VISIT_KEY = 'bf-visits';
+
+function getVisitCount() {
+    return parseInt(localStorage.getItem(VISIT_KEY) || '0', 10);
+}
+function incrementVisits() {
+    const n = getVisitCount() + 1;
+    localStorage.setItem(VISIT_KEY, String(n));
+    return n;
+}
+
 function applyReturningReader() {
     if (getVisitCount() > 1) {
         const returnMsg = document.querySelector('.returning-reader-msg');
@@ -542,7 +441,6 @@ window.addEventListener('load', () => {
     grainient = initGrainient(bgContainer, c);
 
     storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
-    document.querySelectorAll('.hidden-floor').forEach(el => gsap.set(el, { opacity: 0 }));
 
     currentIndex = 0;
     gsap.set(storyLines[0], { opacity: 1 });
@@ -551,5 +449,4 @@ window.addEventListener('load', () => {
 
     incrementVisits();
     applyReturningReader();
-    updateDiscoveryCounter();
 });
