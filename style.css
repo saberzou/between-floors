@@ -12,7 +12,7 @@
     --bg-end: #f0dcc5;       /* Light warm */
     --text-light: #2a2420;
     --accent-gray: #c8b8a8;
-    --floor-indicator: #2f2d2e;
+    --floor-indicator: #fa5860;
     --dialogue-color: #6a8fa8;
     --thought-color: #8a7a6a;
 }
@@ -389,7 +389,7 @@ body::before {
     font-style: italic;
     font-size: 15px;
     color: #8a7a6a;
-    border-left: 2px solid rgba(47, 45, 46, 0.25);
+    border-left: 2px solid rgba(250, 88, 96, 0.25);
     padding-left: 20px;
     margin-top: 48px;
     line-height: 1.8;
@@ -461,7 +461,7 @@ body::before {
     position: fixed;
     z-index: 150;
     background: rgba(250, 242, 230, 0.96);
-    border: 1px solid rgba(47, 45, 46, 0.25);
+    border: 1px solid rgba(250, 88, 96, 0.25);
     border-radius: 10px;
     padding: 16px 20px;
     max-width: 320px;
@@ -541,7 +541,7 @@ body::before {
     color: #8a7a6a;
     line-height: 1.7;
     font-style: italic;
-    border-left: 2px solid rgba(47, 45, 46, 0.15);
+    border-left: 2px solid rgba(250, 88, 96, 0.15);
     padding-left: 16px;
     margin-bottom: 12px;
 }
@@ -731,12 +731,12 @@ body::before {
     align-items: center;
     gap: 14px;
     touch-action: auto;
-    -webkit-tap-highlight-color: rgba(47, 45, 46, 0.12);
+    -webkit-tap-highlight-color: rgba(250, 88, 96, 0.12);
 }
 
 .quiz-option:hover {
     background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(47, 45, 46, 0.25);
+    border-color: rgba(250, 88, 96, 0.25);
 }
 
 .quiz-option-letter {
@@ -853,8 +853,8 @@ body::before {
     text-transform: uppercase;
     padding: 12px 24px;
     border-radius: 8px;
-    border: 1px solid rgba(47, 45, 46, 0.3);
-    background: rgba(47, 45, 46, 0.1);
+    border: 1px solid rgba(250, 88, 96, 0.3);
+    background: rgba(250, 88, 96, 0.1);
     color: var(--floor-indicator);
     cursor: pointer;
     transition: all 0.25s ease;
@@ -862,8 +862,8 @@ body::before {
 }
 
 .quiz-btn:hover {
-    background: rgba(47, 45, 46, 0.15);
-    border-color: rgba(47, 45, 46, 0.5);
+    background: rgba(250, 88, 96, 0.15);
+    border-color: rgba(250, 88, 96, 0.5);
 }
 
 .quiz-btn-secondary {

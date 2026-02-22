@@ -70,7 +70,7 @@ function showLine(index, goingUp) {
         });
     }
 
-    floorNumber.style.color = '#2f2d2e';
+    floorNumber.style.color = '#fa5860';
 
     if (floor > 0 && !scrollHintHidden) {
         scrollHintHidden = true;
