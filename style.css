@@ -7,9 +7,9 @@
 
 :root {
     /* Color Palette - Gradient Journey */
-    --bg-start: #132640;     /* Cold steel blue */
-    --bg-middle: #0f1419;    /* Near black shaft */
-    --bg-end: #1c2833;       /* Warm blue-gray */
+    --bg-start: #1e3a55;     /* Steel blue */
+    --bg-middle: #162430;    /* Deep blue */
+    --bg-end: #2a4058;       /* Warm blue-gray */
     --text-light: #E8E8E8;
     --accent-gray: #3A3A3A;
     --floor-indicator: #00D9FF;
@@ -20,7 +20,7 @@
 html {
     scroll-behavior: smooth;
     min-height: 100%;
-    background: #0a0e14;
+    background: #141e2a;
     overflow: hidden;
     touch-action: none;
 }
