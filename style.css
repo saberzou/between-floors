@@ -129,7 +129,7 @@ body::before {
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 900px;
-    padding: 0 80px;
+    padding: 0 60px;
     opacity: 0;
 }
 
@@ -919,7 +919,7 @@ body::before {
     }
 
     .story-line {
-        top: 45%;
+        top: 50%;
         padding: 0 40px;
         max-width: 100%;
     }
@@ -1037,7 +1037,7 @@ body::before {
     }
 
     .story-line {
-        top: 42%;
+        top: 50%;
         padding: 0 36px;
     }
 
