@@ -445,17 +445,13 @@ body::before {
 
 /* === VOCAB WORD HIGHLIGHTING === */
 .vocab-word {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-decoration-color: rgba(0, 217, 255, 0.4);
-    text-underline-offset: 4px;
+    color: var(--floor-indicator);
     cursor: pointer;
-    transition: text-decoration-color 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .vocab-word:hover {
-    text-decoration-style: solid;
-    text-decoration-color: rgba(0, 217, 255, 0.8);
+    opacity: 0.8;
 }
 
 /* === VOCAB TOOLTIP === */
