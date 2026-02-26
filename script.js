@@ -56,9 +56,11 @@ function showLine(index, goingUp) {
 
     // Show scroll hint only on floor 0
     if (floor === 0) {
-        gsap.to(scrollHint, { opacity: 1, y: 0, duration: 0.5 });
+        scrollHint.style.animation = 'pulse 3s ease-in-out infinite';
+        gsap.to(scrollHint, { opacity: 0.3, y: 0, duration: 0.5 });
     } else {
-        gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.5 });
+        scrollHint.style.animation = 'none';
+        gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.3 });
     }
 
     // Show quiz CTA only on floor 9
