@@ -6,20 +6,7 @@ const storyLines = document.querySelectorAll('.story-line');
 const totalFloors = storyLines.length;
 
 // ============ STATE ============
-const floorColors = [
-    ['#f5e6d0', '#e8d5bc', '#f0dcc5'],
-    ['#f0dec8', '#e5ccb0', '#ebd4be'],
-    ['#edd8c0', '#e0c8a8', '#e8d0b8'],
-    ['#e8d2b8', '#dcc4a5', '#e5ccb0'],
-    ['#f2e0c8', '#e8d0b0', '#eedcc0'],
-    ['#e5d0c0', '#dac0aa', '#e0cab5'],
-    ['#e0d8c8', '#d5ccb8', '#ddd5c5'],
-    ['#e8dcd0', '#ddd0c0', '#e5d8c8'],
-    ['#f0dcc0', '#e5ccaa', '#ebd5b8'],
-    ['#e8d0c0', '#dcc0a8', '#e5cab5'],
-];
-
-let grainient = null;
+// Background is now flat #F1ECE0 — no gradient needed
 
 // ============ STATE ============
 let currentIndex = 0;
@@ -45,10 +32,6 @@ function showLine(index, goingUp) {
           onComplete() { isAnimating = false; } }
     );
 
-    if (grainient) {
-        const c = floorColors[floor] || floorColors[0];
-        grainient.setColors(c[0], c[1], c[2]);
-    }
 
     floorNumber.classList.remove('glitch');
     gsap.killTweensOf(floorNumber);
@@ -70,7 +53,7 @@ function showLine(index, goingUp) {
         });
     }
 
-    floorNumber.style.color = '#fa5860';
+    floorNumber.style.color = '#EC4F23';
 
     if (floor > 0 && !scrollHintHidden) {
         scrollHintHidden = true;
@@ -433,9 +416,9 @@ function retakeQuiz() {
 
 // ============ INIT ============
 window.addEventListener('load', () => {
-    const bgContainer = document.querySelector('.floor-gradient');
-    const c = floorColors[0];
-    grainient = initGrainient(bgContainer, c);
+    
+    
+    
 
     storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
 
