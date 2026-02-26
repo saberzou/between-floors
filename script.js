@@ -11,7 +11,6 @@ const totalFloors = storyLines.length;
 // ============ STATE ============
 let currentIndex = 0;
 let isAnimating = false;
-let scrollHintHidden = false;
 
 // ============ SHOW LINE ============
 function showLine(index, goingUp) {
@@ -55,16 +54,29 @@ function showLine(index, goingUp) {
 
     floorNumber.style.color = '#EC4F23';
 
-    if (floor > 0 && !scrollHintHidden) {
-        scrollHintHidden = true;
-        gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.8 });
+    // Show scroll hint only on floor 0
+    if (floor === 0) {
+        gsap.to(scrollHint, { opacity: 1, y: 0, duration: 0.5 });
+    } else {
+        gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.5 });
+    }
+
+    // Show quiz CTA only on floor 9
+    const quizCta = document.getElementById('quizCta');
+    if (quizCta) {
+        if (floor === 9) {
+            gsap.to(quizCta, { opacity: 1, y: 0, duration: 0.5, delay: 0.3 });
+            quizCta.style.pointerEvents = 'auto';
+        } else {
+            gsap.to(quizCta, { opacity: 0, y: 10, duration: 0.3 });
+            quizCta.style.pointerEvents = 'none';
+        }
     }
 }
 
 // ============ NAVIGATION ============
 function goUp() {
     if (isAnimating) return;
-    if (currentIndex === 9) { openQuizOverlay(); return; }
     const next = currentIndex + 1;
     if (next < totalFloors) showLine(next, true);
 }
