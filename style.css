@@ -194,20 +194,19 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #F8C741;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     z-index: 100;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
 }
 
 .info-pill svg {
-    color: var(--floor-indicator);
-    opacity: 0.6;
+    color: #000000;
+    opacity: 1;
     transition: all 0.3s ease;
 }
 
@@ -428,20 +427,19 @@ body::before {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #2872DD;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 100;
     transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
 }
 
 .vocab-pill svg {
-    color: var(--floor-indicator);
-    opacity: 0.6;
+    color: #000000;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
