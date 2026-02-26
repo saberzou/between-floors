@@ -190,7 +190,8 @@ body::before {
 .quiz-cta {
     position: fixed;
     bottom: 60px;
-    left: 60px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
     font-family: 'Sora', sans-serif;
     font-size: 14px;
@@ -200,14 +201,15 @@ body::before {
     background: #EC4F23;
     border: none;
     border-radius: 24px;
-    padding: 12px 28px;
+    height: 44px;
+    padding: 0 28px;
     cursor: pointer;
     transition: all 0.25s ease;
     white-space: nowrap;
 }
 
 .quiz-cta:hover {
-    transform: scale(1.05);
+    transform: translateX(-50%) scale(1.05);
     box-shadow: 0 4px 16px rgba(236, 79, 35, 0.3);
 }
 
