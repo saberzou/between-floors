@@ -113,7 +113,7 @@ body::before {
 
 .floor-dot {
     font-family: 'Doto', sans-serif;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 400;
     width: 44px;
     height: 44px;
@@ -122,14 +122,14 @@ body::before {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    color: var(--text-light);
+    color: #EC4F23;
     opacity: 0.25;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .floor-dot.active {
     background: #000000;
-    color: #F1ECE0;
+    color: #EC4F23;
     opacity: 1;
 }
 
