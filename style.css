@@ -95,14 +95,18 @@ body::before {
     gap: 8px;
     align-items: center;
     justify-content: center;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    padding: 0 16px;
 }
 
 .floor-dot {
     font-family: 'Doto', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -954,9 +958,13 @@ body::before {
     }
 
     .floor-dot {
-        width: 28px;
-        height: 28px;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
         font-size: 12px;
+    }
+
+    .floor-numbers {
         gap: 4px;
     }
 
@@ -1078,13 +1086,14 @@ body::before {
     }
 
     .floor-dot {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
         font-size: 11px;
     }
 
     .floor-numbers {
-        gap: 4px;
+        gap: 2px;
     }
 
     .story-line {
