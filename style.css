@@ -72,23 +72,11 @@ body::before {
 /* === FLOOR INDICATOR (Fixed) === */
 .floor-indicator {
     position: fixed;
-    top: 60px;
-    right: 60px;
-    text-align: right;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     z-index: 100;
-}
-
-.floor-number {
-    font-family: 'Doto', sans-serif;
-    font-optical-sizing: auto;
-    font-size: 140px;
-    font-weight: 300;
-    font-style: normal;
-    font-variation-settings: "ROND" 0;
-    color: var(--floor-indicator);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    transition: color 0.3s ease;
 }
 
 .building-name {
@@ -98,8 +86,36 @@ body::before {
     letter-spacing: 0.2em;
     color: var(--text-light);
     opacity: 0.4;
-    margin-top: 12px;
+    margin-bottom: 12px;
     text-transform: uppercase;
+}
+
+.floor-numbers {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.floor-dot {
+    font-family: 'Doto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-light);
+    opacity: 0.25;
+    transition: all 0.3s ease;
+}
+
+.floor-dot.active {
+    background: #000000;
+    color: #F1ECE0;
+    opacity: 1;
 }
 
 /* === ELEVATOR INTERIOR === */
@@ -935,11 +951,13 @@ body::before {
 @media (max-width: 768px) {
     .floor-indicator {
         top: 24px;
-        right: 24px;
     }
 
-    .floor-number {
-        font-size: 72px;
+    .floor-dot {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        gap: 4px;
     }
 
     .building-name {
@@ -1056,12 +1074,17 @@ body::before {
 
 @media (max-width: 480px) {
     .floor-indicator {
-        top: 20px;
-        right: 20px;
+        top: 16px;
     }
 
-    .floor-number {
-        font-size: 56px;
+    .floor-dot {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+
+    .floor-numbers {
+        gap: 4px;
     }
 
     .story-line {

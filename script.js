@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const floorNumber = document.querySelector('.floor-number');
+const floorDots = document.querySelectorAll('.floor-dot');
 const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
 const totalFloors = storyLines.length;
@@ -32,27 +32,12 @@ function showLine(index, goingUp) {
     );
 
 
-    floorNumber.classList.remove('glitch');
-    gsap.killTweensOf(floorNumber);
+    if (floor === 10) return;
 
-    if (floor === 10) {
-        // Quiz is now an overlay — this floor shouldn't exist
-        return;
-    } else {
-        gsap.to(floorNumber, { opacity: 1, duration: 0.3 });
-        gsap.to(document.querySelector('.building-name'), { opacity: 0.4, duration: 0.3 });
-        gsap.to(floorNumber, {
-            textContent: floor,
-            duration: 0.3,
-            ease: 'power2.inOut',
-            snap: { textContent: 1 },
-            onUpdate() {
-                floorNumber.textContent = Math.round(parseFloat(floorNumber.textContent));
-            }
-        });
-    }
-
-    floorNumber.style.color = '#EC4F23';
+    // Update floor dots
+    floorDots.forEach(dot => {
+        dot.classList.toggle('active', parseInt(dot.dataset.floor) === floor);
+    });
 
     // Show scroll hint only on floor 0
     if (floor === 0) {
@@ -438,7 +423,7 @@ window.addEventListener('load', () => {
 
     currentIndex = 0;
     gsap.set(storyLines[0], { opacity: 1 });
-    floorNumber.textContent = '0';
+    floorDots[0].classList.add('active');
     isAnimating = false;
 
     incrementVisits();
