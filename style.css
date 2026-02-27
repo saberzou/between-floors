@@ -172,7 +172,7 @@ body::before {
 /* === SCROLL HINT === */
 .scroll-hint {
     position: fixed;
-    bottom: 60px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -189,7 +189,7 @@ body::before {
 /* === QUIZ CTA === */
 .quiz-cta {
     position: fixed;
-    bottom: 60px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
@@ -216,7 +216,7 @@ body::before {
 /* === INFO PILL === */
 .info-pill {
     position: fixed;
-    bottom: 60px;
+    bottom: 24px;
     right: 60px;
     width: 44px;
     height: 44px;
@@ -449,7 +449,7 @@ body::before {
 /* === VOCAB PILL (bottom-left) === */
 .vocab-pill {
     position: fixed;
-    bottom: 60px;
+    bottom: 24px;
     left: 60px;
     width: 44px;
     height: 44px;
