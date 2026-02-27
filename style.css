@@ -95,6 +95,7 @@ body::before {
     align-items: center;
     overflow: hidden;
     width: 260px;
+    height: 52px;
     position: relative;
     -webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
     mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
@@ -102,6 +103,8 @@ body::before {
 
 .floor-numbers-track {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 8px;
     align-items: center;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
