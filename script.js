@@ -1,6 +1,19 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const floorDots = document.querySelectorAll('.floor-dot');
+const floorTrack = document.querySelector('.floor-numbers-track');
+const floorContainer = document.querySelector('.floor-numbers');
+
+function centerFloorDot(index) {
+    const dot = floorDots[index];
+    if (!dot || !floorTrack || !floorContainer) return;
+    const dotSize = 44;
+    const gap = 8;
+    const containerWidth = floorContainer.offsetWidth;
+    const offset = index * (dotSize + gap);
+    const center = containerWidth / 2 - dotSize / 2;
+    floorTrack.style.transform = `translateX(${center - offset}px)`;
+}
 const scrollHint = document.querySelector('.scroll-hint');
 const storyLines = document.querySelectorAll('.story-line');
 const totalFloors = storyLines.length;
@@ -38,6 +51,7 @@ function showLine(index, goingUp) {
     floorDots.forEach(dot => {
         dot.classList.toggle('active', parseInt(dot.dataset.floor) === floor);
     });
+    centerFloorDot(floor);
 
     // Show scroll hint only on floor 0
     if (floor === 0) {
@@ -424,6 +438,7 @@ window.addEventListener('load', () => {
     currentIndex = 0;
     gsap.set(storyLines[0], { opacity: 1 });
     floorDots[0].classList.add('active');
+    centerFloorDot(0);
     isAnimating = false;
 
     incrementVisits();

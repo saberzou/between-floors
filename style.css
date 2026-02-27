@@ -92,12 +92,20 @@ body::before {
 
 .floor-numbers {
     display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 260px;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+}
+
+.floor-numbers-track {
+    display: flex;
     gap: 8px;
     align-items: center;
-    justify-content: center;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-    padding: 0 16px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .floor-dot {
@@ -113,7 +121,7 @@ body::before {
     border-radius: 50%;
     color: var(--text-light);
     opacity: 0.25;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .floor-dot.active {
@@ -965,7 +973,11 @@ body::before {
     }
 
     .floor-numbers {
-        gap: 4px;
+        width: 220px;
+    }
+
+    .floor-numbers-track {
+        gap: 6px;
     }
 
     .building-name {
@@ -1093,7 +1105,11 @@ body::before {
     }
 
     .floor-numbers {
-        gap: 2px;
+        width: 180px;
+    }
+
+    .floor-numbers-track {
+        gap: 4px;
     }
 
     .story-line {
