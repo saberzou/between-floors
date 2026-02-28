@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Between Floors — Story 1: Welcome Home</title>
+    <title>Between Floors</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,6 +98,72 @@
                     <p class="dialogue"><strong>Aria:</strong> "Anytime. Now go eat some noodles and get some sleep. Tomorrow I'll introduce you to the building group chat <img class="inline-sticker" src="stickers/chat.png" alt="💬">. It's <em>chaos</em>."</p>
                 </div>
 
+
+                <!-- Story 2: The 6 AM Shift -->
+                <div class="story-line story2-content" data-floor="18" hidden>
+                    <p>Maria steps into the elevator, cart rattling with supplies. 6:04 AM. The building's still asleep — her favorite time. The <span class="vocab-word" data-word="tenacity">tenacity</span> it takes to start a 6 AM shift with a smile — Maria has that in abundance.</p>
+                    <p>She presses Lobby. Eighteen floors down.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="16" hidden>
+                    <p>The doors open at 17. Mr. Chen shuffles in, bathrobe over pajamas, slippers scuffing. He's holding a thermos and two paper cups.</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "Good morning, Maria."</p>
+                    <p>She smiles. "Mr. Chen. You're up early."</p>
+                    <p>Maria isn't <span class="vocab-word" data-word="reticent">reticent</span> by nature, but mornings are her quiet hours.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="14" hidden>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "Couldn't sleep. Made too much tea. You want some?"</p>
+                    <p>He doesn't wait for an answer — just pours, steam curling up between them.</p>
+                    <p>Maria accepts the cup. It's warm against her palms.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="12" hidden>
+                    <p>Their conversation <span class="vocab-word" data-word="meander">meanders</span> through comfortable silences and small confessions.</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "My daughter called yesterday. From Seattle. She wants me to move in with her."</p>
+                    <p>He has that <span class="vocab-word" data-word="wistful">wistful</span> look again — the one he gets when he talks about his wife.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="10" hidden>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "I told her no. She thinks I'm being stubborn. Maybe I am."</p>
+                    <p class="dialogue"><strong>Maria:</strong> "You love it here."</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "Princess Whiskers loves it here. Big difference." He smiles. "But yes. I do."</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="8" hidden>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "You know what I like about this building? Aria knows when I forget to eat lunch. Mrs. Kim always leaves extra kimchi by my door. You say good morning like you mean it."</p>
+                    <p class="dialogue"><strong>Maria:</strong> "I do mean it."</p>
+                    <p>There's something <span class="vocab-word" data-word="endearing">endearing</span> about a man who lists his cat as an emergency contact.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="6" hidden>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "In Seattle, I'd be 'Dad.' Here, I'm Mr. Chen. I have a cat. I drink tea at weird hours. I exist outside of being someone's responsibility."</p>
+                    <p class="dialogue"><strong>Maria:</strong> "You should tell your daughter that."</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "I did. She said I was being dramatic." He chuckles. "Maybe I am."</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="4" hidden>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "You know, my wife used to make tea like this. Jasmine. Too much honey."</p>
+                    <p class="dialogue"><strong>Maria:</strong> "This is good tea."</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "She'd be happy you think so."</p>
+                    <p>Silence again. But the kind that feels like understanding.</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="2" hidden>
+                    <p class="dialogue"><strong>Maria:</strong> "For what it's worth, Mr. Chen — I'd miss you."</p>
+                    <p>He looks at her, surprised. Then smiles.</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "Then I suppose I'm staying."</p>
+                    <p class="dialogue"><strong>Maria:</strong> "Good. Who else would drink my terrible breakroom coffee when the thermos runs out?"</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "Your coffee is fine. You just need better beans."</p>
+                </div>
+
+                <div class="story-line story2-content" data-floor="0" hidden>
+                    <p>The doors open at the lobby. Mr. Chen steps out, thermos in hand.</p>
+                    <p class="dialogue"><strong>Mr. Chen:</strong> "See you tomorrow?"</p>
+                    <p class="dialogue"><strong>Maria:</strong> "6 AM. Don't be late."</p>
+                    <p>He waves. She watches him shuffle toward the mailboxes, slippers scuffing against tile. The tea was good.</p>
+                </div>
+
                 <!-- Quiz removed from floor system — now lives as overlay below -->
             </div>
 
@@ -113,6 +179,28 @@
         <button id="quizCta" class="quiz-cta" onclick="openQuizOverlay()" style="opacity:0; pointer-events:none;">Take the Quiz</button>
 
         <!-- Info pill button (top-left) -->
+
+        <!-- Story selector hamburger -->
+        <button class="story-menu-btn" aria-label="Story menu" onclick="toggleStoryMenu()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <line x1="4" y1="7" x2="20" y2="7"/>
+                <line x1="4" y1="12" x2="20" y2="12"/>
+                <line x1="4" y1="17" x2="20" y2="17"/>
+            </svg>
+        </button>
+
+        <!-- Story selector dropdown -->
+        <div class="story-menu" id="storyMenu" hidden>
+            <button class="story-menu-item active" data-story="story1" onclick="switchStory('story1')">
+                <span class="story-menu-num">01</span>
+                <span class="story-menu-title">Welcome Home</span>
+            </button>
+            <button class="story-menu-item" data-story="story2" onclick="switchStory('story2')">
+                <span class="story-menu-num">02</span>
+                <span class="story-menu-title">The 6 AM Shift</span>
+            </button>
+        </div>
+
         <button class="info-pill" aria-label="About this project" onclick="openInfoOverlay()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                 <circle cx="12" cy="12" r="9"/>
@@ -145,7 +233,7 @@
                         <div class="info-label">Stories</div>
                         <ul class="info-story-list">
                             <li><span class="info-story-num">01</span> <span class="info-story-title">Welcome Home</span> — Maya meets Aria for the first time</li>
-                            <li style="opacity:0.3"><span class="info-story-num">02</span> <span class="info-story-title">The 6 AM Shift</span> — Coming soon</li>
+                            <li><span class="info-story-num">02</span> <span class="info-story-title">The 6 AM Shift</span> — Maria &amp; Mr. Chen share tea at dawn</li>
                             <li style="opacity:0.3"><span class="info-story-num">03</span> <span class="info-story-title">Firmware Update</span> — Coming soon</li>
                         </ul>
                     </div>

@@ -128,5 +128,133 @@ const VOCAB = {
                 correct: 0
             }
         ]
+    },
+
+    story2: {
+        title: "The 6 AM Shift",
+        words: [
+            {
+                word: "meander",
+                type: "verb",
+                pronunciation: "/miˈæn.dər/",
+                level: "C1",
+                definition: "To follow a winding course; to wander without urgency",
+                inStory: "Their conversation meanders through comfortable silences and small confessions.",
+                examples: [
+                    "The river meanders through the valley before reaching the sea.",
+                    "We meandered through the old streets, stopping wherever looked interesting."
+                ],
+                synonyms: ["wander", "drift", "ramble", "stroll"]
+            },
+            {
+                word: "wistful",
+                type: "adjective",
+                pronunciation: "/ˈwɪst.fəl/",
+                level: "C1",
+                definition: "Having a feeling of vague or regretful longing",
+                inStory: "He has that wistful look again — the one he gets when he talks about his wife.",
+                examples: [
+                    "She gave a wistful smile as she looked at the old photographs.",
+                    "There was something wistful in the way he talked about his childhood home."
+                ],
+                synonyms: ["longing", "yearning", "nostalgic", "pensive"]
+            },
+            {
+                word: "reticent",
+                type: "adjective",
+                pronunciation: "/ˈret.ɪ.sənt/",
+                level: "C1",
+                definition: "Not revealing one's thoughts or feelings readily; reserved",
+                inStory: "Maria isn't reticent by nature, but mornings are her quiet hours.",
+                examples: [
+                    "He's usually reticent about his personal life at work.",
+                    "The witness was reticent, answering questions with the fewest words possible."
+                ],
+                synonyms: ["reserved", "taciturn", "guarded", "tight-lipped"]
+            },
+            {
+                word: "endearing",
+                type: "adjective",
+                pronunciation: "/ɪnˈdɪr.ɪŋ/",
+                level: "C1",
+                definition: "Inspiring affection or warm approval",
+                inStory: "There's something endearing about a man who lists his cat as an emergency contact.",
+                examples: [
+                    "Her endearing habit of laughing at her own jokes made everyone smile.",
+                    "The puppy's clumsy attempts to climb the stairs were endearing."
+                ],
+                synonyms: ["charming", "lovable", "adorable", "appealing"]
+            },
+            {
+                word: "tenacity",
+                type: "noun",
+                pronunciation: "/təˈnæs.ɪ.ti/",
+                level: "C1",
+                definition: "The quality of holding firmly to something; persistence and determination",
+                inStory: "The tenacity it takes to start a 6 AM shift with a smile — Maria has that in abundance.",
+                examples: [
+                    "Her tenacity in pursuing the project impressed everyone on the team.",
+                    "It takes real tenacity to learn a new language as an adult."
+                ],
+                synonyms: ["persistence", "determination", "resolve", "grit"]
+            }
+        ],
+        quiz: [
+            {
+                context: "Their conversation <strong>meanders</strong> through comfortable silences.",
+                question: "What does \"meander\" suggest about the conversation?",
+                options: [
+                    "It's tense and difficult",
+                    "It wanders naturally without rushing",
+                    "It's strictly focused on one topic",
+                    "It's ending abruptly"
+                ],
+                correct: 1
+            },
+            {
+                context: "He has that <strong>wistful</strong> look again.",
+                question: "A wistful expression most likely shows someone who is:",
+                options: [
+                    "Angry about a recent argument",
+                    "Confused by something unexpected",
+                    "Gently longing for something in the past",
+                    "Excited about future plans"
+                ],
+                correct: 2
+            },
+            {
+                context: "Maria isn't <strong>reticent</strong> by nature.",
+                question: "Someone who is reticent would most likely:",
+                options: [
+                    "Talk openly about their feelings to anyone",
+                    "Keep their thoughts and feelings to themselves",
+                    "Interrupt others in conversation",
+                    "Be the first to volunteer opinions"
+                ],
+                correct: 1
+            },
+            {
+                context: "There's something <strong>endearing</strong> about him.",
+                question: "Which is the best example of something endearing?",
+                options: [
+                    "A child carefully wrapping a gift with too much tape",
+                    "A manager sending a stern email to the team",
+                    "A car alarm going off at 3 AM",
+                    "A politician giving a rehearsed speech"
+                ],
+                correct: 0
+            },
+            {
+                context: "The <strong>tenacity</strong> it takes to start every shift with a smile.",
+                question: "Tenacity is most important when:",
+                options: [
+                    "Everything is going smoothly",
+                    "You need to relax after a long day",
+                    "You face obstacles but keep going anyway",
+                    "You want to make a quick decision"
+                ],
+                correct: 2
+            }
+        ]
     }
 };

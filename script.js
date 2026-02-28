@@ -1,23 +1,45 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const floorDots = document.querySelectorAll('.floor-dot');
 const floorTrack = document.querySelector('.floor-numbers-track');
 const floorContainer = document.querySelector('.floor-numbers');
+const scrollHint = document.querySelector('.scroll-hint');
+
+// ============ STORY SYSTEM ============
+const STORIES = {
+    story1: {
+        title: "Welcome Home",
+        floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        scrollHint: "\u2191 Scroll up to ascend"
+    },
+    story2: {
+        title: "The 6 AM Shift",
+        floors: [18, 16, 14, 12, 10, 8, 6, 4, 2, 0],
+        scrollHint: "\u2191 Scroll up to descend"
+    }
+};
+
+let activeStory = 'story1';
+
+function getStoryLines() {
+    if (activeStory === 'story1') {
+        return Array.from(document.querySelectorAll('.story-line:not(.story2-content)'));
+    }
+    return Array.from(document.querySelectorAll('.story-line.story2-content'));
+}
+
+function getFloorDots() {
+    return Array.from(document.querySelectorAll('.floor-dot'));
+}
 
 function centerFloorDot(index) {
-    const dot = floorDots[index];
+    const dots = getFloorDots();
+    const dot = dots[index];
     if (!dot || !floorTrack || !floorContainer) return;
     const containerWidth = floorContainer.offsetWidth;
     const dotOffset = dot.offsetLeft + dot.offsetWidth / 2;
     const center = containerWidth / 2;
     floorTrack.style.transform = `translateX(${center - dotOffset}px)`;
 }
-const scrollHint = document.querySelector('.scroll-hint');
-const storyLines = document.querySelectorAll('.story-line');
-const totalFloors = storyLines.length;
-
-// ============ STATE ============
-// Background is now flat #F1ECE0 — no gradient needed
 
 // ============ STATE ============
 let currentIndex = 0;
@@ -25,34 +47,36 @@ let isAnimating = false;
 
 // ============ SHOW LINE ============
 function showLine(index, goingUp) {
-    if (index < 0 || index >= totalFloors) return;
+    const lines = getStoryLines();
+    const dots = getFloorDots();
+    const total = lines.length;
+
+    if (index < 0 || index >= total) return;
 
     isAnimating = true;
     currentIndex = index;
-    const floor = index;
 
-    storyLines.forEach(line => gsap.killTweensOf(line));
-    storyLines.forEach((line, i) => {
+    lines.forEach(line => gsap.killTweensOf(line));
+    lines.forEach((line, i) => {
         if (i !== index) gsap.set(line, { opacity: 0 });
     });
 
-    gsap.fromTo(storyLines[index],
+    gsap.fromTo(lines[index],
         { opacity: 0, y: goingUp ? 25 : -25 },
         { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
           onComplete() { isAnimating = false; } }
     );
 
-
-    if (floor === 10) return;
-
     // Update floor dots
-    floorDots.forEach(dot => {
-        dot.classList.toggle('active', parseInt(dot.dataset.floor) === floor);
+    const storyFloors = STORIES[activeStory].floors;
+    const currentFloorNum = storyFloors[index];
+    dots.forEach(dot => {
+        dot.classList.toggle('active', parseInt(dot.dataset.floor) === currentFloorNum);
     });
-    centerFloorDot(floor);
+    centerFloorDot(index);
 
-    // Show scroll hint only on floor 0
-    if (floor === 0) {
+    // Show scroll hint only on first floor
+    if (index === 0) {
         scrollHint.style.animation = 'pulse 3s ease-in-out infinite';
         gsap.to(scrollHint, { opacity: 0.3, y: 0, duration: 0.5 });
     } else {
@@ -60,10 +84,10 @@ function showLine(index, goingUp) {
         gsap.to(scrollHint, { opacity: 0, y: 10, duration: 0.3 });
     }
 
-    // Show quiz CTA only on floor 9
-    const quizCta = document.getElementById('quizCta');
+    // Show quiz CTA on last floor
+    var quizCta = document.getElementById('quizCta');
     if (quizCta) {
-        if (floor === 9) {
+        if (index === total - 1) {
             gsap.to(quizCta, { opacity: 1, y: 0, duration: 0.5, delay: 0.3 });
             quizCta.style.pointerEvents = 'auto';
         } else {
@@ -76,54 +100,51 @@ function showLine(index, goingUp) {
 // ============ NAVIGATION ============
 function goUp() {
     if (isAnimating) return;
-    const next = currentIndex + 1;
-    if (next < totalFloors) showLine(next, true);
+    var total = getStoryLines().length;
+    var next = currentIndex + 1;
+    if (next < total) showLine(next, true);
 }
 
 function goDown() {
     if (isAnimating) return;
     if (currentIndex === 0) return;
-    const next = currentIndex - 1;
-    if (next >= 0) showLine(next, false);
+    showLine(currentIndex - 1, false);
 }
 
 // ============ TOUCH ============
-let touchStartY = 0;
-const SWIPE_THRESHOLD = 30;
+var touchStartY = 0;
+var SWIPE_THRESHOLD = 30;
 
-document.addEventListener('touchstart', (e) => {
+document.addEventListener('touchstart', function(e) {
     touchStartY = e.touches[0].clientY;
 }, { passive: true });
 
-document.addEventListener('touchmove', (e) => {
-    // Allow scrolling inside overlays (quiz, vocab, info)
-    if (e.target.closest('.quiz-overlay-scroll, .info-scroll')) return;
-    // Prevent default scrolling on the main page
+document.addEventListener('touchmove', function(e) {
+    if (e.target.closest('.quiz-overlay-scroll, .info-scroll, .story-menu')) return;
     e.preventDefault();
 }, { passive: false });
 
-document.addEventListener('touchend', (e) => {
+document.addEventListener('touchend', function(e) {
     if (isOverlayOpen()) return;
-    // Don't intercept taps on interactive elements
-    if (e.target.closest('.quiz-option, .quiz-btn, .vocab-word, .vocab-pill, .info-pill, .info-close')) return;
-    const deltaY = touchStartY - e.changedTouches[0].clientY;
+    if (e.target.closest('.quiz-option, .quiz-btn, .vocab-word, .vocab-pill, .info-pill, .info-close, .story-menu-btn, .story-menu')) return;
+    var deltaY = touchStartY - e.changedTouches[0].clientY;
     if (Math.abs(deltaY) < SWIPE_THRESHOLD) return;
     if (deltaY > 0) goUp(); else goDown();
 });
 
 // ============ WHEEL / TRACKPAD ============
-let wheelAccum = 0;
-let wheelTimer = null;
-const WHEEL_THRESHOLD = 50;
+var wheelAccum = 0;
+var wheelTimer = null;
+var WHEEL_THRESHOLD = 50;
 
-document.addEventListener('wheel', (e) => {
+document.addEventListener('wheel', function(e) {
     e.preventDefault();
     if (isAnimating) return;
     if (isOverlayOpen()) return;
 
     wheelAccum += e.deltaY;
     clearTimeout(wheelTimer);
-    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 200);
+    wheelTimer = setTimeout(function() { wheelAccum = 0; }, 200);
 
     if (Math.abs(wheelAccum) >= WHEEL_THRESHOLD) {
         if (wheelAccum > 0) goUp(); else goDown();
@@ -132,7 +153,7 @@ document.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 // ============ KEYBOARD ============
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowUp') { e.preventDefault(); goUp(); }
     if (e.key === 'ArrowDown') { e.preventDefault(); goDown(); }
     if (e.key === 'Escape') {
@@ -140,24 +161,26 @@ document.addEventListener('keydown', (e) => {
         closeVocabOverlay();
         closeQuizOverlay();
         hideTooltip();
+        var menu = document.getElementById('storyMenu');
+        if (menu) menu.hidden = true;
     }
 });
 
 // ============ RETURNING READER ============
-const VISIT_KEY = 'bf-visits';
+var VISIT_KEY = 'bf-visits';
 
 function getVisitCount() {
     return parseInt(localStorage.getItem(VISIT_KEY) || '0', 10);
 }
 function incrementVisits() {
-    const n = getVisitCount() + 1;
+    var n = getVisitCount() + 1;
     localStorage.setItem(VISIT_KEY, String(n));
     return n;
 }
 
 function applyReturningReader() {
     if (getVisitCount() > 1) {
-        const returnMsg = document.querySelector('.returning-reader-msg');
+        var returnMsg = document.querySelector('.returning-reader-msg');
         if (returnMsg) returnMsg.hidden = false;
     }
 }
@@ -179,29 +202,28 @@ function closeInfoOverlay() {
 
 // ============ VOCAB OVERLAY ============
 function openVocabOverlay() {
-    const overlay = document.getElementById('vocabOverlay');
-    const content = document.getElementById('vocabContent');
-    
-    // Populate content
-    const data = VOCAB.story1;
-    content.innerHTML = `
-        <h1>Vocabulary</h1>
-        <p class="info-tagline">Story 1: ${data.title} — ${data.words.length} words</p>
-        <div class="info-divider"></div>
-        ${data.words.map((w, i) => `
-            <div class="vocab-entry">
-                <div class="vocab-entry-word">${w.word}</div>
-                <div class="vocab-entry-meta">${w.type} &nbsp; ${w.pronunciation} &nbsp; ${w.level}</div>
-                <div class="vocab-entry-def">${w.definition}</div>
-                <div class="vocab-entry-context">"${w.inStory}"</div>
-                <ul class="vocab-entry-examples">
-                    ${w.examples.map(ex => `<li>${ex}</li>`).join('')}
-                </ul>
-                <div class="vocab-entry-synonyms">Synonyms: <span>${w.synonyms.join(', ')}</span></div>
-            </div>
-        `).join('')}
-    `;
-    
+    var overlay = document.getElementById('vocabOverlay');
+    var content = document.getElementById('vocabContent');
+
+    var data = VOCAB[activeStory];
+    var storyNum = activeStory === 'story1' ? '1' : '2';
+    content.innerHTML =
+        '<h1>Vocabulary</h1>' +
+        '<p class="info-tagline">Story ' + storyNum + ': ' + data.title + ' \u2014 ' + data.words.length + ' words</p>' +
+        '<div class="info-divider"></div>' +
+        data.words.map(function(w) {
+            return '<div class="vocab-entry">' +
+                '<div class="vocab-entry-word">' + w.word + '</div>' +
+                '<div class="vocab-entry-meta">' + w.type + ' &nbsp; ' + w.pronunciation + ' &nbsp; ' + w.level + '</div>' +
+                '<div class="vocab-entry-def">' + w.definition + '</div>' +
+                '<div class="vocab-entry-context">"' + w.inStory + '"</div>' +
+                '<ul class="vocab-entry-examples">' +
+                    w.examples.map(function(ex) { return '<li>' + ex + '</li>'; }).join('') +
+                '</ul>' +
+                '<div class="vocab-entry-synonyms">Synonyms: <span>' + w.synonyms.join(', ') + '</span></div>' +
+            '</div>';
+        }).join('');
+
     overlay.classList.add('open');
 }
 
@@ -217,45 +239,49 @@ function openQuizOverlay() {
 
 function closeQuizOverlay() {
     document.getElementById('quizOverlay').classList.remove('open');
-    // Reset animation state so navigation works after closing
     isAnimating = false;
 }
 
 // ============ VOCAB TOOLTIPS ============
-const tooltip = document.getElementById('vocabTooltip');
-
-document.addEventListener('click', (e) => {
-    const vocabEl = e.target.closest('.vocab-word');
+document.addEventListener('click', function(e) {
+    var vocabEl = e.target.closest('.vocab-word');
     if (vocabEl) {
         e.stopPropagation();
         showTooltip(vocabEl);
         return;
     }
-    // Click elsewhere dismisses tooltip
     if (!e.target.closest('.vocab-tooltip')) {
         hideTooltip();
     }
 });
 
 function showTooltip(el) {
-    const word = el.dataset.word;
-    const data = VOCAB.story1.words.find(w => w.word === word);
+    var word = el.dataset.word;
+    var data = null;
+    // Search active story first, then all
+    if (VOCAB[activeStory]) {
+        data = VOCAB[activeStory].words.find(function(w) { return w.word === word; });
+    }
+    if (!data) {
+        var keys = Object.keys(VOCAB);
+        for (var k = 0; k < keys.length; k++) {
+            data = VOCAB[keys[k]].words.find(function(w) { return w.word === word; });
+            if (data) break;
+        }
+    }
     if (!data) return;
 
     document.getElementById('tooltipWord').textContent = data.word;
-    document.getElementById('tooltipPron').textContent = `${data.type}  ${data.pronunciation}`;
+    document.getElementById('tooltipPron').textContent = data.type + '  ' + data.pronunciation;
     document.getElementById('tooltipDef').textContent = data.definition;
 
-    // Position near the element
-    const rect = el.getBoundingClientRect();
-    const tooltipEl = document.getElementById('vocabTooltip');
+    var rect = el.getBoundingClientRect();
+    var tooltipEl = document.getElementById('vocabTooltip');
     tooltipEl.hidden = false;
 
-    // Position below the word
-    let top = rect.bottom + 12;
-    let left = rect.left;
+    var top = rect.bottom + 12;
+    var left = rect.left;
 
-    // Keep on screen
     if (left + 320 > window.innerWidth) left = window.innerWidth - 340;
     if (left < 20) left = 20;
     if (top + 120 > window.innerHeight) top = rect.top - 120;
@@ -263,34 +289,34 @@ function showTooltip(el) {
     tooltipEl.style.top = top + 'px';
     tooltipEl.style.left = left + 'px';
 
-    // Animate in
-    requestAnimationFrame(() => {
+    requestAnimationFrame(function() {
         tooltipEl.classList.add('visible');
     });
 }
 
 function hideTooltip() {
-    const tooltipEl = document.getElementById('vocabTooltip');
+    var tooltipEl = document.getElementById('vocabTooltip');
     tooltipEl.classList.remove('visible');
-    setTimeout(() => { tooltipEl.hidden = true; }, 250);
+    setTimeout(function() { tooltipEl.hidden = true; }, 250);
 }
 
 // ============ QUIZ ENGINE ============
-const QUIZ_KEY = 'bf-quiz';
-let quizIndex = 0;
-let quizAnswers = [];
-let quizActive = false;
+var QUIZ_KEY = 'bf-quiz';
+var quizIndex = 0;
+var quizAnswers = [];
+var quizActive = false;
 
 function getQuizState() {
-    try { return JSON.parse(localStorage.getItem(QUIZ_KEY)) || {}; } catch { return {}; }
+    try { return JSON.parse(localStorage.getItem(QUIZ_KEY)) || {}; } catch(e) { return {}; }
 }
 
 function saveQuizState(score, answers) {
-    const state = getQuizState();
-    state.story1 = {
-        bestScore: Math.max(score, (state.story1?.bestScore || 0)),
+    var state = getQuizState();
+    var prev = state[activeStory] || {};
+    state[activeStory] = {
+        bestScore: Math.max(score, prev.bestScore || 0),
         lastScore: score,
-        attempts: (state.story1?.attempts || 0) + 1,
+        attempts: (prev.attempts || 0) + 1,
         answers: answers,
         timestamp: Date.now()
     };
@@ -298,10 +324,10 @@ function saveQuizState(score, answers) {
 }
 
 function initQuiz() {
-    const state = getQuizState();
-    if (state.story1?.lastScore === 5) {
-        // Already aced it — show results directly
-        showQuizResults(5, state.story1.answers || [1,1,0,0,0]);
+    var state = getQuizState();
+    var storyState = state[activeStory];
+    if (storyState && storyState.lastScore === 5) {
+        showQuizResults(5, storyState.answers || [1,1,0,0,0]);
         return;
     }
     quizIndex = 0;
@@ -313,31 +339,30 @@ function initQuiz() {
 }
 
 function renderQuizQuestion() {
-    const quiz = VOCAB.story1.quiz;
+    var quiz = VOCAB[activeStory].quiz;
     if (quizIndex >= quiz.length) {
         finishQuiz();
         return;
     }
 
-    const q = quiz[quizIndex];
-    const letters = ['A', 'B', 'C', 'D'];
-    
+    var q = quiz[quizIndex];
+    var letters = ['A', 'B', 'C', 'D'];
+
     document.getElementById('quizCurrent').textContent = quizIndex + 1;
     document.getElementById('quizContext').innerHTML = q.context;
     document.getElementById('quizQuestion').textContent = q.question;
 
-    const optionsEl = document.getElementById('quizOptions');
-    optionsEl.innerHTML = q.options.map((opt, i) => `
-        <button class="quiz-option" data-answer="${i}">
-            <span class="quiz-option-letter">${letters[i]}</span>
-            <span>${opt}</span>
-        </button>
-    `).join('');
+    var optionsEl = document.getElementById('quizOptions');
+    optionsEl.innerHTML = q.options.map(function(opt, i) {
+        return '<button class="quiz-option" data-answer="' + i + '">' +
+            '<span class="quiz-option-letter">' + letters[i] + '</span>' +
+            '<span>' + opt + '</span>' +
+        '</button>';
+    }).join('');
 
-    // Bind events directly (more reliable on iOS than inline onclick)
-    optionsEl.querySelectorAll('.quiz-option').forEach(btn => {
-        let handled = false;
-        const doAnswer = (e) => {
+    optionsEl.querySelectorAll('.quiz-option').forEach(function(btn) {
+        var handled = false;
+        var doAnswer = function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (handled) return;
@@ -348,29 +373,26 @@ function renderQuizQuestion() {
         btn.addEventListener('click', doAnswer);
     });
 
-    // Fade in
     gsap.fromTo('#quizContainer', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 });
 }
 
 function answerQuiz(selected) {
     if (!quizActive) return;
-    
-    const q = VOCAB.story1.quiz[quizIndex];
-    const isCorrect = selected === q.correct;
+
+    var q = VOCAB[activeStory].quiz[quizIndex];
+    var isCorrect = selected === q.correct;
     quizAnswers.push(isCorrect);
 
-    // Highlight correct/wrong
-    const options = document.querySelectorAll('.quiz-option');
-    options.forEach((opt, i) => {
+    var options = document.querySelectorAll('.quiz-option');
+    options.forEach(function(opt, i) {
         opt.classList.add('disabled');
         if (i === q.correct) opt.classList.add('correct');
         if (i === selected && !isCorrect) opt.classList.add('wrong');
     });
 
-    // Advance after a brief pause
-    setTimeout(() => {
+    setTimeout(function() {
         quizIndex++;
-        if (quizIndex < VOCAB.story1.quiz.length) {
+        if (quizIndex < VOCAB[activeStory].quiz.length) {
             gsap.to('#quizContainer', { opacity: 0, duration: 0.2, onComplete: renderQuizQuestion });
         } else {
             finishQuiz();
@@ -380,19 +402,19 @@ function answerQuiz(selected) {
 
 function finishQuiz() {
     quizActive = false;
-    const score = quizAnswers.filter(Boolean).length;
+    var score = quizAnswers.filter(Boolean).length;
     saveQuizState(score, quizAnswers);
     showQuizResults(score, quizAnswers);
 }
 
 function showQuizResults(score, answers) {
     document.getElementById('quizContainer').hidden = true;
-    const resultsEl = document.getElementById('quizResults');
+    var resultsEl = document.getElementById('quizResults');
     resultsEl.hidden = false;
 
     document.getElementById('quizScoreNum').textContent = score;
 
-    const msgs = {
+    var msgs = {
         5: "Perfect. Every word earned.",
         4: "Almost there. One to review.",
         3: "Solid effort. Keep going.",
@@ -402,15 +424,15 @@ function showQuizResults(score, answers) {
     };
     document.getElementById('quizScoreMsg').textContent = msgs[score] || '';
 
-    const words = VOCAB.story1.words;
-    const wordResultsEl = document.getElementById('quizWordResults');
-    wordResultsEl.innerHTML = words.map((w, i) => {
-        const correct = answers[i];
-        return `<div class="quiz-word-result">
-            <span class="mark ${correct ? 'correct' : 'wrong'}">${correct ? '✓' : '✗'}</span>
-            <span class="word-name">${w.word}</span>
-            ${!correct ? '<span class="review-hint">review</span>' : ''}
-        </div>`;
+    var words = VOCAB[activeStory].words;
+    var wordResultsEl = document.getElementById('quizWordResults');
+    wordResultsEl.innerHTML = words.map(function(w, i) {
+        var correct = answers[i];
+        return '<div class="quiz-word-result">' +
+            '<span class="mark ' + (correct ? 'correct' : 'wrong') + '">' + (correct ? '\u2713' : '\u2717') + '</span>' +
+            '<span class="word-name">' + w.word + '</span>' +
+            (!correct ? '<span class="review-hint">review</span>' : '') +
+        '</div>';
     }).join('');
 
     gsap.fromTo(resultsEl, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 });
@@ -425,17 +447,84 @@ function retakeQuiz() {
     renderQuizQuestion();
 }
 
-// ============ INIT ============
-window.addEventListener('load', () => {
-    
-    
-    
+// ============ STORY SELECTOR ============
+function switchStory(storyId) {
+    if (storyId === activeStory) {
+        toggleStoryMenu();
+        return;
+    }
+    activeStory = storyId;
 
-    storyLines.forEach(line => gsap.set(line, { opacity: 0 }));
+    // Hide all story lines
+    document.querySelectorAll('.story-line').forEach(function(el) {
+        gsap.set(el, { opacity: 0 });
+    });
+
+    // Show/hide correct content
+    document.querySelectorAll('.story-line:not(.story2-content)').forEach(function(el) {
+        el.hidden = (storyId !== 'story1');
+    });
+    document.querySelectorAll('.story-line.story2-content').forEach(function(el) {
+        el.hidden = (storyId !== 'story2');
+    });
+
+    // Rebuild floor dots
+    var story = STORIES[storyId];
+    floorTrack.innerHTML = story.floors.map(function(f, i) {
+        return '<span class="floor-dot' + (i === 0 ? ' active' : '') + '" data-floor="' + f + '">' + f + '</span>';
+    }).join('');
+
+    // Update scroll hint
+    var hint = document.querySelector('.scroll-hint p');
+    if (hint) hint.textContent = story.scrollHint;
+
+    // Update menu active state
+    document.querySelectorAll('.story-menu-item').forEach(function(el) {
+        el.classList.toggle('active', el.dataset.story === storyId);
+    });
+
+    // Reset state
+    currentIndex = 0;
+    isAnimating = false;
+
+    // Show first line
+    var lines = getStoryLines();
+    gsap.set(lines[0], { opacity: 1 });
+    centerFloorDot(0);
+
+    // Reset quiz CTA
+    var quizCta = document.getElementById('quizCta');
+    if (quizCta) { gsap.set(quizCta, { opacity: 0 }); quizCta.style.pointerEvents = 'none'; }
+
+    toggleStoryMenu();
+}
+
+function toggleStoryMenu() {
+    var menu = document.getElementById('storyMenu');
+    menu.hidden = !menu.hidden;
+}
+
+// Close menu on outside click
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.story-menu-btn') && !e.target.closest('.story-menu')) {
+        var menu = document.getElementById('storyMenu');
+        if (menu && !menu.hidden) menu.hidden = true;
+    }
+});
+
+// ============ INIT ============
+window.addEventListener('load', function() {
+    // Hide story 2 content initially
+    document.querySelectorAll('.story2-content').forEach(function(el) { el.hidden = true; });
+
+    var lines = getStoryLines();
+    lines.forEach(function(line) { gsap.set(line, { opacity: 0 }); });
 
     currentIndex = 0;
-    gsap.set(storyLines[0], { opacity: 1 });
-    floorDots[0].classList.add('active');
+    gsap.set(lines[0], { opacity: 1 });
+
+    var dots = getFloorDots();
+    if (dots[0]) dots[0].classList.add('active');
     centerFloorDot(0);
     isAnimating = false;
 
