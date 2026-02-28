@@ -1199,7 +1199,7 @@ body::before {
     font-size: 15px;
     text-align: left;
     color: #000;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: none;
     transition: opacity 0.2s;
     opacity: 0.45;
 }
@@ -1220,30 +1220,5 @@ body::before {
     color: #000;
 }
 
-.story-menu-divider {
-    height: 1px;
-    background: rgba(0,0,0,0.1);
-    margin: 12px 0;
-}
 
-.story-menu-about {
-    opacity: 0.5;
-    border-bottom: none;
-}
-.story-menu-about:hover { opacity: 0.8; }
-
-.story-menu-close {
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Sora', sans-serif;
-    font-size: 14px;
-    color: #000;
-    opacity: 0.5;
-    transition: opacity 0.2s;
-    padding: 0;
-}
 .story-menu-close:hover { opacity: 1; }

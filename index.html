@@ -187,6 +187,10 @@
         <div class="story-menu" id="storyMenu">
             <button class="story-menu-close" onclick="toggleStoryMenu()">Close</button>
             <div class="story-menu-label">Stories</div>
+            <button class="story-menu-item" onclick="toggleStoryMenu(); openInfoOverlay();">
+                <span class="story-menu-num">00</span>
+                <span class="story-menu-title">About</span>
+            </button>
             <button class="story-menu-item active" data-story="story1" onclick="switchStory('story1')">
                 <span class="story-menu-num">01</span>
                 <span class="story-menu-title">Welcome Home</span>
@@ -194,10 +198,6 @@
             <button class="story-menu-item" data-story="story2" onclick="switchStory('story2')">
                 <span class="story-menu-num">02</span>
                 <span class="story-menu-title">The 6 AM Shift</span>
-            </button>
-            <div class="story-menu-divider"></div>
-            <button class="story-menu-item story-menu-about" onclick="toggleStoryMenu(); openInfoOverlay();">
-                <span class="story-menu-title">About</span>
             </button>
         </div>
 
