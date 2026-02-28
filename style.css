@@ -1165,7 +1165,7 @@ body::before {
     background: #F8C741;
     color: #000;
     width: 280px;
-    padding: 80px 32px 40px;
+    padding: 40px 32px 40px;
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
@@ -1222,21 +1222,24 @@ body::before {
 
 
 .story-menu-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
     width: 44px;
     height: 44px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.08);
-    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 270;
     transition: all 0.3s ease;
+    margin-bottom: 32px;
+    padding: 0;
 }
+.story-menu-close svg {
+    color: #000;
+    opacity: 0.6;
+}
+.story-menu-close:hover svg { opacity: 1; }
 .story-menu-close svg {
     color: #000;
     opacity: 0.6;
