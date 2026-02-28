@@ -1225,12 +1225,67 @@ body::before {
     position: absolute;
     top: 24px;
     right: 24px;
-    background: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.08);
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    color: #000;
-    opacity: 0.4;
-    transition: opacity 0.2s;
-    padding: 8px;
+    z-index: 270;
+    transition: all 0.3s ease;
 }
-.story-menu-close:hover { opacity: 1; }
+.story-menu-close svg {
+    color: #000;
+    opacity: 0.6;
+}
+.story-menu-close:hover svg { opacity: 1; }
+.story-menu-close:hover
+
+/* === VOCAB OVERLAY BLUE THEME === */
+.vocab-overlay {
+    background: rgba(40, 114, 221, 0.97) !important;
+}
+.vocab-overlay .info-scroll h1,
+.vocab-overlay .info-tagline,
+.vocab-overlay .info-divider {
+    color: #fff;
+    border-color: rgba(255,255,255,0.15);
+}
+.vocab-overlay .vocab-entry {
+    border-bottom-color: rgba(255,255,255,0.1);
+}
+.vocab-overlay .vocab-entry-word {
+    color: #fff;
+}
+.vocab-overlay .vocab-entry-meta {
+    color: rgba(255,255,255,0.5);
+}
+.vocab-overlay .vocab-entry-def {
+    color: rgba(255,255,255,0.9);
+}
+.vocab-overlay .vocab-entry-context {
+    color: rgba(255,255,255,0.6);
+    border-left-color: rgba(248,199,65,0.4);
+}
+.vocab-overlay .vocab-entry-examples li {
+    color: rgba(255,255,255,0.6);
+}
+.vocab-overlay .vocab-entry-examples li::before {
+    color: rgba(255,255,255,0.3);
+}
+.vocab-overlay .vocab-entry-synonyms {
+    color: rgba(255,255,255,0.4);
+}
+.vocab-overlay .vocab-entry-synonyms span {
+    color: #F8C741;
+}
+.vocab-overlay .info-close {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
+}
+.vocab-overlay .info-close svg {
+    color: #fff;
+}
