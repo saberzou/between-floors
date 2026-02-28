@@ -180,17 +180,22 @@
 
         <!-- Info pill button (top-left) -->
 
-        <!-- Story selector hamburger -->
+<!-- Story selector hamburger -->
         <button class="story-menu-btn" aria-label="Story menu" onclick="toggleStoryMenu()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="4" y1="7" x2="20" y2="7"/>
                 <line x1="4" y1="12" x2="20" y2="12"/>
                 <line x1="4" y1="17" x2="20" y2="17"/>
             </svg>
         </button>
 
-        <!-- Story selector dropdown -->
-        <div class="story-menu" id="storyMenu" hidden>
+        <!-- Story menu backdrop -->
+        <div class="story-menu-backdrop" id="storyMenuBackdrop" onclick="toggleStoryMenu()"></div>
+
+        <!-- Story selector sidebar -->
+        <div class="story-menu" id="storyMenu">
+            <button class="story-menu-close" onclick="toggleStoryMenu()">Close</button>
+            <div class="story-menu-label">Stories</div>
             <button class="story-menu-item active" data-story="story1" onclick="switchStory('story1')">
                 <span class="story-menu-num">01</span>
                 <span class="story-menu-title">Welcome Home</span>

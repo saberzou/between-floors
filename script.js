@@ -500,17 +500,19 @@ function switchStory(storyId) {
 }
 
 function toggleStoryMenu() {
-    var menu = document.getElementById('storyMenu');
-    menu.hidden = !menu.hidden;
+    var menu = document.getElementById("storyMenu");
+    var backdrop = document.getElementById("storyMenuBackdrop");
+    var isOpen = menu.classList.contains("open");
+    if (isOpen) {
+        menu.classList.remove("open");
+        backdrop.classList.remove("open");
+    } else {
+        menu.classList.add("open");
+        backdrop.classList.add("open");
+    }
 }
 
-// Close menu on outside click
-document.addEventListener('click', function(e) {
-    if (!e.target.closest('.story-menu-btn') && !e.target.closest('.story-menu')) {
-        var menu = document.getElementById('storyMenu');
-        if (menu && !menu.hidden) menu.hidden = true;
-    }
-});
+// Close menu on Escape (handled in keyboard section above)
 
 // ============ INIT ============
 window.addEventListener('load', function() {
