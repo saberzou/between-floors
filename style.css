@@ -1245,7 +1245,7 @@ body::before {
 .story-menu-close:hover
 
 /* === VOCAB OVERLAY BLUE THEME === */
-.vocab-overlay {
+div.info-overlay.vocab-overlay {
     background: #2872DD !important; backdrop-filter: none !important;
 }
 .vocab-overlay .info-scroll h1,
