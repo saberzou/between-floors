@@ -1139,27 +1139,6 @@ body::before {
 }
 
 /* === STORY MENU === */
-.story-menu-btn {
-    position: fixed;
-    top: 40px;
-    right: 24px;
-    z-index: 300;
-    background: #EC4F23;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: transform 0.3s, opacity 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.story-menu-btn:hover { transform: scale(1.05); }
-.story-menu-btn svg { stroke: #fff; }
 
 /* Backdrop overlay */
 .story-menu-backdrop {
@@ -1176,14 +1155,15 @@ body::before {
     pointer-events: auto;
 }
 
-/* Sidebar panel — left, full height, SJA style */
+/* Sidebar panel — left, full height, yellow bg */
 .story-menu {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     z-index: 260;
-    background: #F1ECE0;
+    background: #F8C741;
+    color: #000;
     width: 280px;
     padding: 80px 32px 40px;
     transform: translateX(-100%);
@@ -1201,8 +1181,9 @@ body::before {
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    opacity: 0.4;
+    opacity: 0.5;
     margin-bottom: 20px;
+    color: #000;
 }
 
 .story-menu-item {
@@ -1217,12 +1198,13 @@ body::before {
     font-family: 'Sora', sans-serif;
     font-size: 15px;
     text-align: left;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: #000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
     transition: opacity 0.2s;
-    opacity: 0.5;
+    opacity: 0.45;
 }
 .story-menu-item:last-child { border-bottom: none; }
-.story-menu-item:hover { opacity: 0.8; }
+.story-menu-item:hover { opacity: 0.75; }
 .story-menu-item.active { opacity: 1; }
 
 .story-menu-num {
@@ -1230,11 +1212,25 @@ body::before {
     font-size: 20px;
     font-weight: 600;
     min-width: 28px;
+    color: #000;
 }
 
 .story-menu-title {
     font-weight: 400;
+    color: #000;
 }
+
+.story-menu-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.1);
+    margin: 12px 0;
+}
+
+.story-menu-about {
+    opacity: 0.5;
+    border-bottom: none;
+}
+.story-menu-about:hover { opacity: 0.8; }
 
 .story-menu-close {
     position: absolute;
@@ -1245,6 +1241,7 @@ body::before {
     cursor: pointer;
     font-family: 'Sora', sans-serif;
     font-size: 14px;
+    color: #000;
     opacity: 0.5;
     transition: opacity 0.2s;
     padding: 0;
