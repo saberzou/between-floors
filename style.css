@@ -1246,7 +1246,7 @@ body::before {
 
 /* === VOCAB OVERLAY BLUE THEME === */
 .vocab-overlay {
-    background: rgba(40, 114, 221, 0.97) !important;
+    background: #2872DD !important; backdrop-filter: none !important;
 }
 .vocab-overlay .info-scroll h1,
 .vocab-overlay .info-tagline,
