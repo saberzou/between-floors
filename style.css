@@ -94,11 +94,11 @@ body::before {
     display: flex;
     align-items: center;
     overflow: hidden;
-    width: 260px;
-    height: 52px;
+    width: 340px;
+    height: 56px;
     position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
-    mask-image: linear-gradient(to right, transparent, black 25%, black 75%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 .floor-numbers-track {
@@ -113,23 +113,23 @@ body::before {
 
 .floor-dot {
     font-family: 'Doto', sans-serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 400;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    color: #EC4F23;
-    opacity: 0.25;
+    color: #000000;
+    opacity: 0.3;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .floor-dot.active {
     background: #000000;
-    color: #EC4F23;
+    color: #ffffff;
     opacity: 1;
 }
 
@@ -969,14 +969,14 @@ body::before {
     }
 
     .floor-dot {
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-        font-size: 12px;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 22px;
     }
 
     .floor-numbers {
-        width: 220px;
+        width: 280px;
     }
 
     .floor-numbers-track {
@@ -1101,14 +1101,14 @@ body::before {
     }
 
     .floor-dot {
-        width: 32px;
-        height: 32px;
-        min-width: 32px;
-        font-size: 11px;
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 18px;
     }
 
     .floor-numbers {
-        width: 180px;
+        width: 240px;
     }
 
     .floor-numbers-track {
