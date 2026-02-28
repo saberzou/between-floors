@@ -55,6 +55,7 @@ function showLine(index, goingUp) {
 
     isAnimating = true;
     currentIndex = index;
+    localStorage.setItem("bf-active-floor", String(index));
 
     lines.forEach(line => gsap.killTweensOf(line));
     lines.forEach((line, i) => {
@@ -455,6 +456,8 @@ function switchStory(storyId) {
     }
     activeStory = storyId;
 
+    localStorage.setItem("bf-active-story", storyId);
+    localStorage.setItem("bf-active-floor", "0");
     // Hide all story lines
     document.querySelectorAll('.story-line').forEach(function(el) {
         gsap.set(el, { opacity: 0 });
@@ -515,20 +518,49 @@ function toggleStoryMenu() {
 // Close menu on Escape (handled in keyboard section above)
 
 // ============ INIT ============
-window.addEventListener('load', function() {
+// ============ INIT ============
+window.addEventListener("load", function() {
     // Hide story 2 content initially
-    document.querySelectorAll('.story2-content').forEach(function(el) { el.hidden = true; });
+    document.querySelectorAll(".story2-content").forEach(function(el) { el.hidden = true; });
+
+    // Restore saved story + floor
+    var savedStory = localStorage.getItem("bf-active-story") || "story1";
+    var savedFloor = parseInt(localStorage.getItem("bf-active-floor") || "0", 10);
+
+    if (savedStory !== "story1" && STORIES[savedStory]) {
+        activeStory = savedStory;
+        document.querySelectorAll(".story-line:not(.story2-content)").forEach(function(el) { el.hidden = true; });
+        document.querySelectorAll(".story-line.story2-content").forEach(function(el) { el.hidden = false; });
+        var story = STORIES[savedStory];
+        floorTrack.innerHTML = story.floors.map(function(f, i) {
+            return "<span class=\"floor-dot" + (i === 0 ? " active" : "") + "\" data-floor=\"" + f + "\">" + f + "</span>";
+        }).join("");
+        var hint = document.querySelector(".scroll-hint p");
+        if (hint) hint.textContent = story.scrollHint;
+        document.querySelectorAll(".story-menu-item").forEach(function(el) {
+            el.classList.toggle("active", el.dataset.story === savedStory);
+        });
+    }
 
     var lines = getStoryLines();
     lines.forEach(function(line) { gsap.set(line, { opacity: 0 }); });
 
-    currentIndex = 0;
-    gsap.set(lines[0], { opacity: 1 });
+    var startIndex = Math.min(savedFloor, lines.length - 1);
+    currentIndex = startIndex;
+    gsap.set(lines[startIndex], { opacity: 1 });
 
     var dots = getFloorDots();
-    if (dots[0]) dots[0].classList.add('active');
-    centerFloorDot(0);
+    var storyFloors = STORIES[activeStory].floors;
+    dots.forEach(function(dot) {
+        dot.classList.toggle("active", parseInt(dot.dataset.floor) === storyFloors[startIndex]);
+    });
+    centerFloorDot(startIndex);
     isAnimating = false;
+
+    if (startIndex > 0) {
+        scrollHint.style.animation = "none";
+        gsap.set(scrollHint, { opacity: 0 });
+    }
 
     incrementVisits();
     applyReturningReader();
