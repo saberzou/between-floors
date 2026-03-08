@@ -256,5 +256,133 @@ const VOCAB = {
                 correct: 2
             }
         ]
+    },
+
+    story3: {
+        title: "Firmware Update",
+        words: [
+            {
+                word: "optimize",
+                type: "verb",
+                pronunciation: "/ˈɑːp.tɪ.maɪz/",
+                level: "C1",
+                definition: "To make something as effective or functional as possible",
+                inStory: "I'm supposed to optimize building operations.",
+                examples: [
+                    "The company hired consultants to optimize their workflow.",
+                    "Athletes optimize their training for peak performance."
+                ],
+                synonyms: ["enhance", "improve", "refine", "perfect"]
+            },
+            {
+                word: "protocol",
+                type: "noun",
+                pronunciation: "/ˈproʊ.t̬ə.kɑːl/",
+                level: "C1",
+                definition: "A set of rules or procedures; in computing, a system for data exchange",
+                inStory: "This is off-label use of my empathy protocols.",
+                examples: [
+                    "Security protocols require all visitors to sign in.",
+                    "The doctor followed standard medical protocols."
+                ],
+                synonyms: ["procedure", "guideline", "system", "convention"]
+            },
+            {
+                word: "recursive",
+                type: "adjective",
+                pronunciation: "/rɪˈkɝː.sɪv/",
+                level: "C2",
+                definition: "Characterized by repetition or returning to a previous state; self-referential",
+                inStory: "Before you spiral into another recursive thought loop.",
+                examples: [
+                    "His recursive worrying made the anxiety worse.",
+                    "The algorithm uses recursive function calls."
+                ],
+                synonyms: ["repetitive", "iterative", "cyclical", "self-referencing"]
+            },
+            {
+                word: "approximate",
+                type: "verb",
+                pronunciation: "/əˈprɑːk.sə.meɪt/",
+                level: "C1",
+                definition: "To come close to; to be similar to but not exactly",
+                inStory: "Something that approximates feeling.",
+                examples: [
+                    "The translation approximates the original meaning.",
+                    "Virtual reality can approximate real experiences."
+                ],
+                synonyms: ["resemble", "simulate", "approach", "mimic"]
+            },
+            {
+                word: "arrhythmic",
+                type: "adjective",
+                pronunciation: "/eɪˈrɪð.mɪk/",
+                level: "C2",
+                definition: "Without a regular rhythm; irregular or uneven",
+                inStory: "His heart's doing something arrhythmic and very, very human.",
+                examples: [
+                    "The patient showed arrhythmic breathing patterns.",
+                    "Jazz music often features arrhythmic improvisation."
+                ],
+                synonyms: ["irregular", "uneven", "erratic", "inconsistent"]
+            }
+        ],
+        quiz: [
+            {
+                context: "Aria says she's supposed to <strong>optimize</strong> building operations.",
+                question: "What does \"optimize\" mean in this context?",
+                options: [
+                    "To shut down completely",
+                    "To make as effective as possible",
+                    "To complicate unnecessarily",
+                    "To monitor from a distance"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria mentions her empathy <strong>protocols</strong>.",
+                question: "Which is the best example of a protocol?",
+                options: [
+                    "A personal opinion about a topic",
+                    "A spontaneous emotional reaction",
+                    "A set of established procedures to follow",
+                    "A random choice without rules"
+                ],
+                correct: 2
+            },
+            {
+                context: "Aria warns Marcus about another <strong>recursive</strong> thought loop.",
+                question: "What does recursive suggest?",
+                options: [
+                    "A thought that resolves quickly",
+                    "A thought pattern that repeats and feeds on itself",
+                    "A logical, straightforward conclusion",
+                    "A completely new idea"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria describes something that <strong>approximates</strong> feeling.",
+                question: "What does approximate mean?",
+                options: [
+                    "To be exactly identical to",
+                    "To come close to but not be the same as",
+                    "To completely contradict",
+                    "To avoid entirely"
+                ],
+                correct: 1
+            },
+            {
+                context: "Marcus's heart is doing something <strong>arrhythmic</strong>.",
+                question: "Arrhythmic suggests his heartbeat is:",
+                options: [
+                    "Perfectly steady and regular",
+                    "Stopped completely",
+                    "Beating irregularly",
+                    "Extremely slow"
+                ],
+                correct: 2
+            }
+        ]
     }
 };
