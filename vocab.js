@@ -384,5 +384,139 @@ const VOCAB = {
                 correct: 2
             }
         ]
+    },
+
+    story4: {
+        title: "Common Ground",
+        words: [
+            {
+                word: "gregarious",
+                type: "adjective",
+                pronunciation: "/ɡrɪˈɡɛːrɪəs/",
+                level: "C1",
+                definition: "Fond of company; sociable and outgoing",
+                inStory: "It keeps me gregarious. Most AIs get quiet. I get opinionated.",
+                examples: [
+                    "She's the most gregarious person at any party—always surrounded by people.",
+                    "Dolphins are gregarious animals, traveling in large social pods."
+                ],
+                synonyms: ["sociable", "outgoing", "extroverted", "affable"],
+                collocations: ["gregarious nature", "gregarious personality"]
+            },
+            {
+                word: "impromptu",
+                type: "adjective",
+                pronunciation: "/ɪmˈprɒmptjuː/",
+                level: "C1",
+                definition: "Done without being planned, organized, or rehearsed",
+                inStory: "I'm fully supportive of this impromptu dinner plan.",
+                examples: [
+                    "He gave an impromptu speech that moved the entire audience.",
+                    "The street musicians started an impromptu concert in the park."
+                ],
+                synonyms: ["spontaneous", "unplanned", "unrehearsed", "off-the-cuff"],
+                collocations: ["impromptu speech", "impromptu performance", "impromptu meeting"]
+            },
+            {
+                word: "camaraderie",
+                type: "noun",
+                pronunciation: "/ˌkæməˈrɑːdəri/",
+                level: "C1–C2",
+                definition: "Mutual trust and friendship among people who spend time together",
+                inStory: "A little camaraderie goes a long way.",
+                examples: [
+                    "There's a strong camaraderie among the firefighters at the station.",
+                    "The camaraderie built during the training camp lasted for decades."
+                ],
+                synonyms: ["fellowship", "companionship", "solidarity", "esprit de corps"],
+                collocations: ["sense of camaraderie", "build camaraderie", "team camaraderie"]
+            },
+            {
+                word: "bemused",
+                type: "adjective",
+                pronunciation: "/bɪˈmjuːzd/",
+                level: "C1",
+                definition: "Puzzled, confused, or bewildered",
+                inStory: "He looks bemused for a moment. Then he smiles.",
+                examples: [
+                    "The tourists looked bemused by the city's complicated metro map.",
+                    "She gave a bemused smile, clearly not expecting the surprise."
+                ],
+                synonyms: ["puzzled", "confused", "bewildered", "perplexed"],
+                collocations: ["look bemused", "bemused expression", "bemused smile"],
+                note: "Often confused with 'amused.' Bemused = confused, NOT entertained."
+            },
+            {
+                word: "convivial",
+                type: "adjective",
+                pronunciation: "/kənˈvɪvɪəl/",
+                level: "C2",
+                definition: "(Of an atmosphere or event) friendly, lively, and enjoyable",
+                inStory: "Mood projection: convivial.",
+                examples: [
+                    "The restaurant had a convivial atmosphere, with laughter at every table.",
+                    "She was known for hosting the most convivial dinner parties in the neighborhood."
+                ],
+                synonyms: ["friendly", "jovial", "genial", "festive"],
+                collocations: ["convivial atmosphere", "convivial gathering", "convivial host"]
+            }
+        ],
+        quiz: [
+            {
+                context: "Aria says being opinionated keeps her \"<strong>gregarious</strong>.\"",
+                question: "What does gregarious mean?",
+                options: [
+                    "Intelligent and quick-thinking",
+                    "Fond of company; sociable",
+                    "Careful and cautious",
+                    "Loud and disruptive"
+                ],
+                correct: 1
+            },
+            {
+                context: "Mrs. Kim's dinner plan is described as \"<strong>impromptu</strong>.\"",
+                question: "Which of these is an impromptu event?",
+                options: [
+                    "A wedding planned six months in advance",
+                    "A surprise jam session that starts when friends happen to bring instruments",
+                    "A scheduled weekly team meeting",
+                    "A birthday party with printed invitations"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria says \"a little <strong>camaraderie</strong> goes a long way.\"",
+                question: "Choose the sentence where camaraderie is used correctly:",
+                options: [
+                    "The camaraderie between the teammates was built over years of trust.",
+                    "She felt a strong camaraderie toward solving the math problem.",
+                    "The camaraderie of the building was painted bright yellow.",
+                    "He showed great camaraderie in his piano performance."
+                ],
+                correct: 0
+            },
+            {
+                context: "Mr. Peterson looks \"<strong>bemused</strong>\" when Maya says walls don't clap.",
+                question: "What does bemused mean?",
+                options: [
+                    "Angry and frustrated",
+                    "Bored and uninterested",
+                    "Puzzled or confused",
+                    "Excited and energetic"
+                ],
+                correct: 2
+            },
+            {
+                context: "Aria projects Saturday's mood as \"<strong>convivial</strong>.\"",
+                question: "In which setting would you MOST expect a convivial atmosphere?",
+                options: [
+                    "A courtroom during a serious trial",
+                    "A library's quiet reading room",
+                    "A neighborhood potluck dinner with live music",
+                    "A hospital waiting room at midnight"
+                ],
+                correct: 2
+            }
+        ]
     }
 };
