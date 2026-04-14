@@ -386,6 +386,139 @@ const VOCAB = {
         ]
     },
 
+    story5: {
+        title: "The Fixer",
+        words: [
+            {
+                word: "meticulous",
+                type: "adjective",
+                pronunciation: "/mɪˈtɪkjʊləs/",
+                level: "C1",
+                definition: "Showing great attention to detail; very careful and precise",
+                inStory: "The gauge is meticulous about reporting micro-fluctuations.",
+                examples: [
+                    "Her meticulous notes helped the whole team during the project review.",
+                    "The watchmaker's meticulous craftsmanship kept the antique clock running perfectly."
+                ],
+                synonyms: ["thorough", "painstaking", "precise", "scrupulous"],
+                collocations: ["meticulous attention", "meticulous planning", "meticulous record-keeping"]
+            },
+            {
+                word: "obsolete",
+                type: "adjective",
+                pronunciation: "/ˌɒbsəˈliːt/",
+                level: "C1",
+                definition: "No longer produced or used; out of date",
+                inStory: "Do you think I'm making you obsolete?",
+                examples: [
+                    "Floppy disks became obsolete long before most people stopped using them.",
+                    "Some argue that physical textbooks are becoming obsolete in the age of digital learning."
+                ],
+                synonyms: ["outdated", "outmoded", "antiquated", "defunct"],
+                collocations: ["become obsolete", "render obsolete", "technologically obsolete"]
+            },
+            {
+                word: "makeshift",
+                type: "adjective",
+                pronunciation: "/ˈmeɪkʃɪft/",
+                level: "C1",
+                definition: "Serving as a temporary substitute; improvised from available materials",
+                inStory: "Makeshift solutions, but they held.",
+                examples: [
+                    "During the power outage, they set up a makeshift charging station using car batteries.",
+                    "The refugees built makeshift homes from corrugated metal and plastic sheets."
+                ],
+                synonyms: ["improvised", "temporary", "stopgap", "jerry-rigged"],
+                collocations: ["makeshift shelter", "makeshift solution", "makeshift repair"]
+            },
+            {
+                word: "indispensable",
+                type: "adjective",
+                pronunciation: "/ˌɪndɪˈspɛnsəbl/",
+                level: "C1",
+                definition: "Absolutely necessary; too important to do without",
+                inStory: "You're indispensable. I want you to know that.",
+                examples: [
+                    "Clean water is indispensable to human survival.",
+                    "She quickly became indispensable to the team with her problem-solving skills."
+                ],
+                synonyms: ["essential", "vital", "crucial", "irreplaceable"],
+                collocations: ["indispensable to", "indispensable part of", "prove indispensable"]
+            },
+            {
+                word: "tenacious",
+                type: "adjective",
+                pronunciation: "/tɪˈneɪʃəs/",
+                level: "C1–C2",
+                definition: "Holding firmly to something; persistent and determined",
+                inStory: "I've got tenacious hands and a gut feeling.",
+                examples: [
+                    "The tenacious reporter spent three years investigating the corruption scandal.",
+                    "Ivy is a tenacious plant that clings to walls and refuses to let go."
+                ],
+                synonyms: ["persistent", "determined", "dogged", "resolute"],
+                collocations: ["tenacious grip", "tenacious pursuit", "tenacious spirit"]
+            }
+        ],
+        quiz: [
+            {
+                context: "Ray says the pressure gauge is \"<strong>meticulous</strong> about reporting micro-fluctuations.\"",
+                question: "What does meticulous mean?",
+                options: [
+                    "Overly dramatic and emotional",
+                    "Showing great attention to detail; very careful and precise",
+                    "Randomly unpredictable",
+                    "Broken and unreliable"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria asks Ray if she is making him \"<strong>obsolete</strong>.\"",
+                question: "Which scenario best illustrates something becoming obsolete?",
+                options: [
+                    "A smartphone getting a software update",
+                    "A typewriter sitting unused in an office that switched to computers years ago",
+                    "A bicycle being ridden to work every day",
+                    "A book being reprinted in a new edition"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria describes her workarounds as \"<strong>makeshift</strong> solutions.\"",
+                question: "Choose the sentence where makeshift is used correctly:",
+                options: [
+                    "The company's makeshift strategy had been planned for three years.",
+                    "They built a makeshift shelter from branches and a tarp when the storm hit.",
+                    "Her makeshift cooking skills won her the professional competition.",
+                    "The makeshift bridge was designed by the city's top engineers."
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria tells Ray he's \"<strong>indispensable</strong>.\"",
+                question: "If someone is indispensable at work, what happens when they leave?",
+                options: [
+                    "Nobody notices any difference",
+                    "Things fall apart because they were too important to lose",
+                    "The company saves money immediately",
+                    "A replacement is found within hours"
+                ],
+                correct: 1
+            },
+            {
+                context: "Ray says he has \"<strong>tenacious</strong> hands and a gut feeling.\"",
+                question: "In which situation would tenacity be MOST valuable?",
+                options: [
+                    "Quickly scanning a document for typos",
+                    "Spending months learning a difficult instrument despite slow progress",
+                    "Choosing what to order at a restaurant",
+                    "Taking a relaxing walk through the park"
+                ],
+                correct: 1
+            }
+        ]
+    },
+
     story4: {
         title: "Common Ground",
         words: [

@@ -25,6 +25,11 @@ const STORIES = {
         title: "Common Ground",
         floors: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         scrollHint: "\u2191 Scroll up to ascend"
+    },
+    story5: {
+        title: "The Fixer",
+        floors: [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        scrollHint: "\u2191 Scroll up to descend"
     }
 };
 
@@ -32,13 +37,16 @@ let activeStory = 'story1';
 
 function getStoryLines() {
     if (activeStory === 'story1') {
-        return Array.from(document.querySelectorAll('.story-line:not(.story2-content):not(.story3-content):not(.story4-content)'));
+        return Array.from(document.querySelectorAll('.story-line:not(.story2-content):not(.story3-content):not(.story4-content):not(.story5-content)'));
     }
     if (activeStory === 'story2') {
         return Array.from(document.querySelectorAll('.story-line.story2-content'));
     }
     if (activeStory === 'story4') {
         return Array.from(document.querySelectorAll('.story-line.story4-content'));
+    }
+    if (activeStory === 'story5') {
+        return Array.from(document.querySelectorAll('.story-line.story5-content'));
     }
     return Array.from(document.querySelectorAll('.story-line.story3-content'));
 }
@@ -480,7 +488,7 @@ function switchStory(storyId) {
     });
 
     // Show/hide correct content
-    document.querySelectorAll('.story-line:not(.story2-content):not(.story3-content):not(.story4-content)').forEach(function(el) {
+    document.querySelectorAll('.story-line:not(.story2-content):not(.story3-content):not(.story4-content):not(.story5-content)').forEach(function(el) {
         el.hidden = (storyId !== 'story1');
     });
     document.querySelectorAll('.story-line.story2-content').forEach(function(el) {
@@ -491,6 +499,9 @@ function switchStory(storyId) {
     });
     document.querySelectorAll('.story-line.story4-content').forEach(function(el) {
         el.hidden = (storyId !== 'story4');
+    });
+    document.querySelectorAll('.story-line.story5-content').forEach(function(el) {
+        el.hidden = (storyId !== 'story5');
     });
 
     // Rebuild floor dots
@@ -542,10 +553,11 @@ function toggleStoryMenu() {
 // ============ INIT ============
 // ============ INIT ============
 window.addEventListener("load", function() {
-    // Hide story 2, 3 and 4 content initially
+    // Hide story 2, 3, 4 and 5 content initially
     document.querySelectorAll(".story2-content").forEach(function(el) { el.hidden = true; });
     document.querySelectorAll(".story3-content").forEach(function(el) { el.hidden = true; });
     document.querySelectorAll(".story4-content").forEach(function(el) { el.hidden = true; });
+    document.querySelectorAll(".story5-content").forEach(function(el) { el.hidden = true; });
 
     // Restore saved story + floor
     var savedStory = localStorage.getItem("bf-active-story") || "story1";
@@ -553,10 +565,11 @@ window.addEventListener("load", function() {
 
     if (savedStory !== "story1" && STORIES[savedStory]) {
         activeStory = savedStory;
-        document.querySelectorAll(".story-line:not(.story2-content):not(.story3-content):not(.story4-content)").forEach(function(el) { el.hidden = true; });
+        document.querySelectorAll(".story-line:not(.story2-content):not(.story3-content):not(.story4-content):not(.story5-content)").forEach(function(el) { el.hidden = true; });
         document.querySelectorAll(".story-line.story2-content").forEach(function(el) { el.hidden = (savedStory !== "story2"); });
         document.querySelectorAll(".story-line.story3-content").forEach(function(el) { el.hidden = (savedStory !== "story3"); });
         document.querySelectorAll(".story-line.story4-content").forEach(function(el) { el.hidden = (savedStory !== "story4"); });
+        document.querySelectorAll(".story-line.story5-content").forEach(function(el) { el.hidden = (savedStory !== "story5"); });
         var story = STORIES[savedStory];
         floorTrack.innerHTML = story.floors.map(function(f, i) {
             return "<span class=\"floor-dot" + (i === 0 ? " active" : "") + "\" data-floor=\"" + f + "\">" + f + "</span>";
