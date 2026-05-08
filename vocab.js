@@ -651,5 +651,138 @@ const VOCAB = {
                 correct: 2
             }
         ]
+    },
+
+    story6: {
+        title: "3 AM",
+        words: [
+            {
+                word: "bleary",
+                type: "adjective",
+                pronunciation: "/ˈblɪri/",
+                level: "C1",
+                definition: "Dull or unfocused, especially from tiredness or tears",
+                inStory: "The bleary expression of a man who hasn't slept more than ninety minutes at a stretch.",
+                examples: [
+                    "She stared at the screen with bleary eyes, trying to finish the report before dawn.",
+                    "After the red-eye flight, he gave a bleary wave to the driver holding his name."
+                ],
+                synonyms: ["unfocused", "glazed", "blurred", "drowsy"],
+                collocations: ["bleary eyes", "bleary-eyed", "bleary morning"]
+            },
+            {
+                word: "inconsolable",
+                type: "adjective",
+                pronunciation: "/ˌinknˈsəʌləbl/",
+                level: "C1",
+                definition: "Not able to be comforted or cheered",
+                inStory: "Nila is still inconsolable.",
+                examples: [
+                    "She was inconsolable after losing the manuscript she'd spent three years writing.",
+                    "The fans were inconsolable when the team lost in the final minute."
+                ],
+                synonyms: ["heartbroken", "devastated", "despairing", "disconsolate"],
+                collocations: ["inconsolable grief", "inconsolable with/over", "left inconsolable"]
+            },
+            {
+                word: "reprieve",
+                type: "noun",
+                pronunciation: "/rɪˈpriːv/",
+                level: "C1",
+                definition: "A temporary relief from something difficult or unpleasant",
+                inStory: "A reprieve in the crying.",
+                examples: [
+                    "The cool breeze was a reprieve from the August heat.",
+                    "The deadline extension gave the team a much-needed reprieve."
+                ],
+                synonyms: ["respite", "relief", "break", "pause"],
+                collocations: ["temporary reprieve", "welcome reprieve", "brief reprieve", "grant a reprieve"]
+            },
+            {
+                word: "endurance",
+                type: "noun",
+                pronunciation: "/ɪnˈdjʊərəns/",
+                level: "C1",
+                definition: "The ability to withstand hardship or difficulty over a prolonged period",
+                inStory: "Parenthood is just endurance with a purpose.",
+                examples: [
+                    "Running an ultramarathon tests the limits of human endurance.",
+                    "Her endurance through years of setbacks eventually led to a breakthrough."
+                ],
+                synonyms: ["stamina", "resilience", "perseverance", "fortitude"],
+                collocations: ["test of endurance", "physical endurance", "endurance training", "beyond endurance"]
+            },
+            {
+                word: "solidarity",
+                type: "noun",
+                pronunciation: "/ˌsɒlɪˈdærɪti/",
+                level: "C1",
+                definition: "Unity or agreement of feeling among people with a common interest or purpose",
+                inStory: "People choosing to be tired together.",
+                examples: [
+                    "The workers showed solidarity by refusing to cross the picket line.",
+                    "Messages of solidarity poured in from around the world after the earthquake."
+                ],
+                synonyms: ["unity", "togetherness", "mutual support", "fellowship"],
+                collocations: ["show solidarity", "in solidarity with", "sense of solidarity", "solidarity among"]
+            }
+        ],
+        quiz: [
+            {
+                context: "Dev has the \"<strong>bleary</strong> expression of a man who hasn't slept more than ninety minutes.\"",
+                question: "What does bleary mean?",
+                options: [
+                    "Angry and confrontational",
+                    "Dull or unfocused, especially from tiredness",
+                    "Extremely energetic and alert",
+                    "Confused about where he is"
+                ],
+                correct: 1
+            },
+            {
+                context: "Nila is described as \"<strong>inconsolable</strong>.\"",
+                question: "Which situation best illustrates being inconsolable?",
+                options: [
+                    "A child who stops crying after getting a toy",
+                    "A person who calms down after talking to a friend",
+                    "A toddler who keeps sobbing no matter what anyone does",
+                    "Someone who feels sad but manages to smile"
+                ],
+                correct: 2
+            },
+            {
+                context: "\"A <strong>reprieve</strong> in the crying.\"",
+                question: "Choose the sentence where reprieve is used correctly:",
+                options: [
+                    "The reprieve lasted for years and became permanent.",
+                    "After three days of rain, the sunny afternoon felt like a welcome reprieve.",
+                    "She planned a reprieve to replace her old job forever.",
+                    "The reprieve made everything worse than before."
+                ],
+                correct: 1
+            },
+            {
+                context: "Priya says \"Parenthood is just <strong>endurance</strong> with a purpose.\"",
+                question: "What requires the MOST endurance?",
+                options: [
+                    "Watching a two-hour movie",
+                    "Training for a marathon over six months",
+                    "Choosing what to eat for lunch",
+                    "Reading a short article online"
+                ],
+                correct: 1
+            },
+            {
+                context: "Aria calls the 3 AM gathering \"<strong>solidarity</strong>.\"",
+                question: "What is the BEST example of solidarity?",
+                options: [
+                    "One person winning a competition alone",
+                    "Neighbors bringing food and support to a struggling family",
+                    "A company firing employees to save money",
+                    "Someone choosing to work from home to avoid others"
+                ],
+                correct: 1
+            }
+        ]
     }
 };
