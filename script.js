@@ -33,7 +33,7 @@ const STORIES = {
     },
     story6: {
         title: "3 AM",
-        floors: [6, 7, 8, 9],
+        floors: [6, 7, 7, 8, 8, 9, 9, 9],
         scrollHint: "\u2191 Scroll up to ascend"
     }
 };
@@ -103,8 +103,8 @@ function showLine(index, goingUp) {
     // Update floor dots
     const storyFloors = STORIES[activeStory].floors;
     const currentFloorNum = storyFloors[index];
-    dots.forEach(dot => {
-        dot.classList.toggle('active', parseInt(dot.dataset.floor) === currentFloorNum);
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
     });
     centerFloorDot(index);
 
@@ -171,9 +171,11 @@ var wheelTimer = null;
 var WHEEL_THRESHOLD = 50;
 
 document.addEventListener('wheel', function(e) {
+    // Let scroll containers (vocab/info/quiz/menu overlays) handle their own wheel events
+    if (e.target.closest && e.target.closest('.info-scroll, .quiz-overlay-scroll, .story-menu')) return;
+    if (isOverlayOpen()) return;
     e.preventDefault();
     if (isAnimating) return;
-    if (isOverlayOpen()) return;
 
     wheelAccum += e.deltaY;
     clearTimeout(wheelTimer);
